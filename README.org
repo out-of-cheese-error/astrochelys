@@ -2,16 +2,16 @@
 This is theme we use for [[https://out-of-cheese-error.netlify.com/][OutOfCheeseError]]
 ** Some screenshots
 *** Index page
-#+attr_html: :width 700px
+#+attr_html: :width 500px
 [[./screenshots/index.png]]
 *** A post
-#+attr_html: :width 700px
+#+attr_html: :width 500px
 [[./screenshots/article.png]]
 *** Tags page
-#+attr_html: :width 700px
+#+attr_html: :width 500px
 [[./screenshots/tags.png]]
 *** On a smaller screen
-#+attr_html: :width 700px
+#+attr_html: :width 500px
 [[./screenshots/phone.png]]
 
 ** More
