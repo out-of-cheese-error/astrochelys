@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Categories{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block toc %}
+<div class="uppercase">Categories</div>
+<hr>
+<div>
+{% for category, articles in categories %}
+<a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('categories') }}#{{ category }}-ref">{{ category }}</a><br>
+{% endfor %}
+</div>
+{% endblock toc %}
+
+{% block content %}
+<header>
+    <h2><a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('categories') }}">Categories</a></h2>
+</header>
+{% for category, articles in categories %}
+<div>
+  <h3>
+    {% set num = articles|count %}
+    {{ category }} ({{ num }})
+  </h3>
+  <div id="{{ category.slug }}-ref">
+    {% for article in articles %}
+    <div class="marginnote">
+    <div class="condensed-font">
+      <time class="published" datetime="{{ article.date.isoformat() }}">
+        {{ article.locale_date }}
+      </time>
+    </div>
+    </div>
+    <div class="article-title">
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}<br></a>
+      {%if article.subtitle %}
+      {{ article.subtitle }}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}

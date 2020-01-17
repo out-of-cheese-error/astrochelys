@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock %}
+    {#PureCSS#}
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    {#Fonts#}
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway&display=swap" rel="stylesheet">
+
+    {#Stylesheets#}
+    {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}
+        <link href="/{{ ASSET_URL }}" rel="stylesheet">
+    {% endassets %}
+</head>
+
+<body>
+<div id="layout" class="pure-g">
+
+{#This means the sidebar is full-width on mobile (u) and 1/4 on larger screens (md)#}
+<div class="sidebar pure-u-1 pure-u-md-1-4">
+    <nav id="sidebar">
+      <div class="sidebar-content">
+        <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
+        <div><small>{{ BIO_TEXT }}</small></div>
+        <div id="sidebar-links">
+          <small>
+            <a href="/">Posts</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="/pages/dailies">Dailies</a>
+            <br>
+            <a href="/categories">Categories</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="/tags">Tags</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="/archives">Archives</a>
+          </small>
+        </div>
+      </div>
+      <hr>
+      <div class="sidebar-content">
+        <div class="toc">{% block toc %}{% endblock %}</div>
+      </div>
+    </nav>
+</div>
+
+<nav class="phone-header">
+  <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
+  <div><small>{{ BIO_TEXT }}</small></div>
+  <div><small>
+        <a href="/">Posts</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/pages/dailies">Dailies</a>
+        <br>
+        <a href="/categories">Categories</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/tags">Tags</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="/archives">Archives</a>
+    </small></div>
+</nav>
+
+{#The main text (+margin) is full width on mobile and 3/4th on computer screens#}
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <article>
+            {% block content %}{% endblock %}
+            <hr>
+        </article>
+    </div>
+</div> {#Closes the layout div#}
+
+{% if GOOGLE_ANALYTICS %}
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ DOMAIN }}');
+        ga('send', 'pageview');
+    </script>
+{% endif %}
+</body>
+</html>

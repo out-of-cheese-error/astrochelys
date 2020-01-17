@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block toc %}
+{% if page.toc %}
+<div class="uppercase">{{page.title}}</div>
+<hr>
+<div class="col-lg-3 hidden-xs hidden-sm">
+    {{page.toc}}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<header><h1>{{ page.title }}</h1></header>
+{{ page.content }}
+{% if page.modified %}
+<p>Last updated: {{ page.locale_modified }}</p>
+{% endif %}
+{% endblock %}

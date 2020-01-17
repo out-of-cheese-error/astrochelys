@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Archives{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block content %}
+<h1>Archives</h1>
+{% for article in dates %}
+{% set year = article.date.strftime('%Y') %}
+{% if loop.first %}
+<h2 id="{{year }}"><a href="#{{year}}">{{ year }}</a></h2>
+{% else %}
+{% set prevyear = loop.previtem.date.strftime('%Y') %}
+{% if prevyear != year %}
+<h2 id="{{year }}"><a href="#{{year}}">{{ year }}</a></h2>
+{% endif %}
+{% endif %}
+<article itemscope>
+  {% set month = article.date.strftime('%m') %}
+  {% set day = article.date.strftime('%d') %}
+  <div class="marginnote">
+  <div class="condensed-font">
+    <time class="published" datetime="{{ article.date.isoformat() }}">
+      {{ article.locale_date }}
+    </time>
+  </div>
+  </div>
+  <div class="article-title">
+    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}<br></a>
+    {%if article.subtitle %}
+    {{ article.subtitle }}
+    {% endif %}
+  </div>
+</article>
+{% endfor %}
+{% endblock content %}

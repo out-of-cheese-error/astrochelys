@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Tags{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block toc %}
+<div class="uppercase">Tags</div>
+<hr>
+<div>
+    {% for tag, articles in tags|sort %}
+    <a href="#{{ tag.slug }}-ref">{{ tag }}</a>&nbsp;.&nbsp;
+    {% endfor %}
+</div>
+{% endblock toc %}
+
+{% block content %}
+<header>
+    <h2><a href="{{ SITEURL }}/{{ TAGS_URL|default('tags') }}">All Tags</a></h2>
+</header>
+<ul class="list-of-tags">
+    {% for tag, articles in tags|sort %}
+    <li>
+        {% set num = articles|count %}
+        <a href="#{{ tag.slug }}-ref">{{ tag }}<span>{{ num }}</span></a>
+    </li>
+    {% endfor %}
+</ul>
+{% for tag, articles in tags|sort %}
+<div>
+  <h3 id="{{ tag.slug }}-ref" class="tag-title">{{ tag }}</h3>
+    {% for article in articles|sort(reverse = true, attribute = 'date') %}
+    <div class="marginnote">
+      <div class="condensed-font">
+        <time class="published" datetime="{{ article.date.isoformat() }}">
+          {{ article.locale_date }}
+        </time>
+      </div>
+    </div>
+    <div class="article-title">
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}<br></a>
+      {%if article.subtitle %}
+      {{ article.subtitle }}
+      {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+{% endblock content %}

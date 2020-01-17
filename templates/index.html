@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block toc %}
+<div class="uppercase">Recent Posts</div>
+<hr>
+<div>
+{% for article in articles_page.object_list %}
+<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+<br>
+{% endfor %}
+</div>
+{% endblock toc %}
+
+{% block content %}
+<section id="content">
+  {% for article in articles_page.object_list %}
+  <article class="hentry">
+    <div class="marginnote">
+      <div class="condensed-font">
+        <time class="published" datetime="{{ article.date.isoformat() }}">
+          {{ article.locale_date }}
+        </time>
+      </div>
+    </div>
+    <div class="article-title">
+      <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+      <h4>
+        {%if article.subtitle %}
+        {{ article.subtitle }}
+        {% endif %}
+      </h4>
+    </div>
+    <div class="article-content"> {{ article.summary }} </div>
+  </article>
+  {% endfor %}
+  {% if articles_page.has_other_pages() %}
+  {% include 'pagination.html' %}
+  {% endif %}
+</section>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}
+{{ article.title|striptags|e }} {%if article.subtitle %} - {{ article.subtitle|striptags|e }} {% endif %} · {{ super() }}
+{% endblock title %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block toc %}
+{% if article.toc %}
+<div class="uppercase">{{article.title}}</div>
+<hr>
+<div class="col-lg-3 hidden-xs hidden-sm">
+    {{article.toc}}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<section id="content" class="body">
+    <div class="marginnote">
+      <hr>
+      <div class="article-information">
+        <div class="article-information-heading uppercase">Published</div>
+        <time class="published" datetime="{{ article.date.isoformat() }}">
+          {{ article.locale_date }}
+        </time>
+        {% if article.modified %}
+        <div class="article-information-heading uppercase">Modified</div>
+        <time class="modified" datetime="{{ article.modified.isoformat() }}">
+          {{ article.locale_modified }}
+        </time>
+        {% endif %}
+        {% if article.category %}
+        <div class="article-information-heading uppercase">Category</div>
+        <div>
+          <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+        </div>
+        {% endif %}
+        {% if article.tags %}
+        <div class="article-information-heading uppercase">Tags</div>
+        <div>
+          {% for tag in article.tags %}
+          <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        </div>
+      <hr>
+    </div>
+    <header><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
+      <h1 class="article-title">
+        {{ article.title }}
+      </h1>
+      <h3>
+        {% if article.subtitle %}
+        {{ article.subtitle }}
+        {% endif %}
+      </h3>
+    </a></header>
+    <div class="article-content">
+      {{ article.content }}
+    </div>
+</section>
+
+{% if DISQUS_SITENAME and article.status != "draft" %}
+	<hr>
+	<!-- Disqus -->
+	<div id="disqus_thread"></div>
+	<script>
+	var disqus_config = function() {
+		this.page.url = '{{ SITEURL }}/{{ article.url }}';
+		this.page.identifier = '{{ article.url }}';
+	};
+	(function() {
+		var d = document, s = d.createElement('script');
+		s.src = '//{{ DISQUS_SITENAME }}.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	{% endif %}
+{% endblock %}

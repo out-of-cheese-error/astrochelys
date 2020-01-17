@@ -1,0 +1,343 @@
+:root {
+  --highlight-color-1: #a965bd;
+  --highlight-color-2: #709158;
+  --highlight-color-3: #e6e9ec;
+  --darkest-color: #181b20;
+  --darker-color: #282c34;
+  --lighter-color: #a89aae;
+  --lightest-color: #fff;
+}
+
+:root {
+  --fixed-font: "Fira Code";
+  --variable-font: "Raleway";
+  --condensed-font: "Fira Sans Condensed";
+}
+
+body {
+ color:var(--darkest-color);
+ background-color:var(--lightest-color);
+ font-family: var(--variable-font);
+ font-size: 1em;
+ margin:0
+}
+div {
+ display:block
+}
+.center-text {
+ text-align:center
+}
+.uppercase {
+ text-transform: uppercase
+}
+.condensed-font {
+ font-family: var(--condensed-font), sans-serif;
+}
+
+a {
+ text-decoration:none;
+ color:var(--highlight-color-1);
+ font-weight: bold;
+}
+a:hover {
+ color:var(--highlight-color-2);
+ border-bottom:1px solid var(--highlight-color-2)
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ font-family:var(--condensed-font),sans-serif;
+ line-height: 1em;
+}
+h1 {font-size:3em}
+h2 {font-size:2.5em}
+h3 {font-size:2em}
+h4 {font-size:1.5em}
+h5 {font-size:1em}
+h6 {font-size:1em}
+@media screen and (max-width:48em) {
+    h1 {font-size:2em}
+    h2 {font-size:1.8em}
+    h3 {font-size:1.5em}
+    h4 {font-size:1.2em}
+    h5 {font-size:1em}
+    h6 {font-size:1em}
+}
+
+code {
+  background: var(--highlight-color-3);
+  font-family: var(--fixed-font), monospace;
+}
+pre, pre code {
+  background: var(--darker-color);
+  font-family: var(--fixed-font), monospace;
+  color: var(--lighter-color);
+  font-size:1em;
+  width: inherit;  
+  max-width: 100%; 
+  height: auto;   
+  padding:10px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: block;
+  overflow-x:auto;
+  -webkit-text-size-adjust:none
+}
+
+img {
+  width: inherit;  
+  max-width: 100%; 
+  height: auto;   
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+blockquote{
+  font-size: 1em;
+  width: 95%;
+  margin: 1em auto;
+  font-family: inherit;
+  font-style: italic;
+  color: var(--darker-color);
+  padding: 1em 2em 1em 3em;
+  border-left: 1em solid var(--highlight-color-1) ;
+  position: relative;
+  background:var(--highlight-color-3);
+}
+
+blockquote::before{
+  font-family:var(--variable-font), serif;
+  content: "\201C";
+  color:var(--highlight-color-1);
+  font-size:4em;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+blockquote::after{
+  content: '';
+}
+
+hr {
+ border:0;
+ border-top:1px solid var(--highlight-color-1);
+ margin:0.4em 0
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#layout {
+    padding: 0;
+}
+
+.sidebar {
+    background: var(--darker-color);
+    color: var(--lighter-color);
+    font-family: var(--condensed-font), sans-serif;
+    text-align: center;
+    font-size: 1.5em;
+}
+.sitename {
+    font-family: Courier, sans-serif;
+    font-size: 1.5em;
+}
+.sidebar-content {
+    margin: 5%;
+    width: 90%;
+    padding: 0.5em;
+    font-size: 90%;
+}
+.sidebar li a, .sidebar .toc a {
+    color: var(--highlight-color-2);
+}
+.sidebar ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    font-size: 80%;
+}
+.sidebar a {
+    font-weight: normal;
+    border: 0;
+}
+@media (min-width: 48em) {
+    .sidebar {
+           position: fixed;
+           top: 0;
+           bottom: 0;
+       }
+}
+
+@media (min-width: 48em) {
+    .phone-header {
+        display: none;
+    }
+}
+@media screen and (max-width:48em) {
+    .sidebar {
+        display:none
+    }
+    .phone-header {
+        display: block;
+        text-align: center;
+        background: var(--darker-color);
+        color: var(--lighter-color);
+        min-height: 3.5em;
+        position: relative;
+        padding: 1em;
+        font-size: 1.3em;
+        font-family: var(--condensed-font);
+    }
+    .phone-header a {
+        font-weight: normal;
+        border: 0;
+    }
+}
+
+@media (min-width: 48em) {
+    .content {
+        padding: 1em 3.5em 0 3.5em;
+        margin-left: 25%;
+        width: 50%;
+    }
+}
+@media screen and (max-width:48em) {
+    .content {
+        padding: 2em 1em 0 1em;
+    }
+}
+.content p {
+    text-align: justify;
+}
+
+@media screen and (max-width:48em) {
+      .article-title {
+          word-wrap: break-word;
+          font-family: var(--condensed-font);
+      }
+  }
+
+.article-information {
+    font-family: var(--condensed-font);
+}
+.article-information-heading {
+    color: var(--lighter-color);
+}
+
+.list-of-tags {
+    font-family: var(--condensed-font), sans-serif;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+.list-of-tags li {
+    float: left;
+    line-height: 1.5em;
+    margin: 0;
+}
+.list-of-tags a {
+    background: var(--highlight-color-3);
+    border-radius: 3px;
+    color: var(--darker-color);
+    margin: 2px;
+    padding: 0.1em 0.4em;
+    text-decoration: none;
+}
+.list-of-tags a span {
+    font-size: 0.8em;
+    vertical-align: super;
+}
+
+.body {
+    counter-reset: sidenote-counter;
+}
+.sidenote,
+.marginnote {
+    float: right;
+    clear: right;
+    margin-right: -60%;
+    width: 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 100%;
+    font-family: var(--variable-font), sans-serif;
+    vertical-align: baseline;
+    position: relative; 
+}
+.sidenote-number {
+    counter-increment: sidenote-counter; 
+}
+.sidenote-number:after,
+.sidenote:before {
+    font-family: var(--fixed-font), monospace;
+    position: relative;
+    vertical-align: baseline; 
+}
+.sidenote-number:after {
+    content: counter(sidenote-counter) "\00bb";
+    font-size: 100%;
+    top: -0.2em;
+}
+.sidenote:before {
+    content: counter(sidenote-counter) "\00bb ";
+    font-size: 100%;
+    top: -0.2em; 
+}
+blockquote .sidenote,
+blockquote .marginnote {
+    margin-right: -82%;
+    min-width: 59%;
+    text-align: left; 
+}
+.marginnote hr {
+  color: var(--highlight-color-1);
+}
+label.sidenote-number {
+    display: inline; 
+}
+label.margin-toggle:not(.sidenote-number) {
+    display: inline; 
+}
+input.margin-toggle {
+    display: none; 
+}
+label.sidenote-number {
+    display: inline; 
+}
+@media screen and (max-width:48em) {
+    label.margin-toggle:not(.sidenote-number) {
+        display: inline; 
+    }
+    .sidenote,
+    .marginnote {
+        display: none; 
+    }
+    .margin-toggle:checked + .sidenote,
+    .margin-toggle:checked + .marginnote {
+        display: block;
+        float: left;
+        left: 1em;
+        clear: both;
+        width: 95%;
+        margin: 1em 2.5%;
+        vertical-align: baseline;
+        position: relative; 
+    }
+    label {
+        cursor: pointer; 
+    }
+}
+@media print {
+ .marginnote,
+ .sidenote {
+  font-size:80%;
+ }
+}

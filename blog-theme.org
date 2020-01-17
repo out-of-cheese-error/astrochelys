@@ -1,0 +1,1465 @@
+#+TITLE: The Astrochelys Theme 
+#+DATE: 2020-01-10
+#+CATEGORY: in-silico
+#+AUTHOR: Hex
+#+PROPERTY: LANGUAGE en
+#+PROPERTY: SUMMARY A not-your-everyday org-mode file that tangles out into a complete Pelican theme. Written by people with not a lot of CSS/HTML know-how.
+#+PROPERTY: SUBTITLE a Pelican theme from non-web developers
+#+PROPERTY: TAGS css, pelican, python, html, theme, astrochelys
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+
+So we decided that the blog could use an upgrade in terms of theming. The [[https://elegant.oncrashreboot.com/][pelican-elegant]] theme that we've been using so far is nice and has plenty of features but it's not extremely memorable given that you could easily stumble across other blogs with the same theme. It's about time for something unique. Problem is, we're not really CSS/HTML people. If forced to make websites showing off tools for work, we usually default to using [[https://plot.ly/dash/][Dash]]. Even starting this, we spent a fruitless half hour looking for visual GUI kind of tools that you could drag and drop stuff into and spit out HTML and CSS@@html:<label for="mn-visual" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-visual" class="margin-toggle"/><span class="marginnote">@@It's still kind of crazy to us that there isn't a tool like this. I mean, the Web Developer in Firefox already lets you click on parts of the page and change around properties, why can't you just use it to make something from a blank page? We're probably missing something here - there's no way people in such a visual field spend all their time typing out hex colors@@html: </span>@@. Anyway, buckled down and wrote some HTML/CSS. 
+
+Well I say wrote, but credit where credit's due - most of this is from all around the internet. We first found Tufte-CSS and really liked the margin notes idea, then came across [[http://cachestocaches.com/][Caches to Caches]] and rooted around Web Developer for some of its CSS, used [[https://codepen.io/cliftwalker/pen/XJaEXY][this codepen]] for some simple blockquotes, and [[https://purecss.io/][PureCSS]] to make dealing with different screen sizes easier. We even kept some of the HTML from [[https://github.com/Pelican-Elegant/elegant][pelican-elegant]].
+
+This post is going to be a bit ambitious in that it's a literate org-mode file which tangles out to the complete CSS and HTML template files of the actual theme - let's see how that goes in terms of readability.
+#+BEGIN_SRC python
+  from pathlib import Path
+  static_dir = Path.cwd() / "static"
+  if not static_dir.exists():
+      static_dir.mkdir()
+  css_dir = static_dir / "css"
+  if not css_dir.exists():
+      css_dir.mkdir()
+  html_dir = Path.cwd() / "templates"
+  if not html_dir.exists():
+      html_dir.mkdir()
+#+END_SRC 
+
+CSS files are in static/css, and HTML template files are in templates. The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-onedark" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-onedark" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the One Dark syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@.
+#+BEGIN_SRC css :tangle "static/css/pygments.css" :exports none
+.hll {
+    background: #282c34
+}
+
+.c {
+    color: #5c6370;
+    font-style: italic
+}
+
+.err {
+    color: #960050;
+    background-color: #1e0010
+}
+
+.k {
+    color: #c678dd
+}
+
+.l {
+    color: #98c379
+}
+
+.n {
+    color: #abb2bf
+}
+
+.o {
+    color: #abb2bf
+}
+
+.p {
+    color: #abb2bf
+}
+
+.cm {
+    color: #5c6370;
+    font-style: italic
+}
+
+.cp {
+    color: #5c6370;
+    font-style: italic
+}
+
+.c1 {
+    color: #5c6370;
+    font-style: italic
+}
+
+.cs {
+    color: #5c6370;
+    font-style: italic
+}
+
+.ge {
+    font-style: italic
+}
+
+.gs {
+    font-weight: 700
+}
+
+.kc {
+    color: #c678dd
+}
+
+.kd {
+    color: #c678dd
+}
+
+.kn {
+    color: #c678dd
+}
+
+.kp {
+    color: #c678dd
+}
+
+.kr {
+    color: #c678dd
+}
+
+.kt {
+    color: #c678dd
+}
+
+.ld {
+    color: #98c379
+}
+
+.m {
+    color: #d19a66
+}
+
+.s {
+    color: #98c379
+}
+
+.na {
+    color: #d19a66
+}
+
+.nb {
+    color: #e5c07b
+}
+
+.nc {
+    color: #e5c07b
+}
+
+.no {
+    color: #e5c07b
+}
+
+.nd {
+    color: #e5c07b
+}
+
+.ni {
+    color: #e5c07b
+}
+
+.ne {
+    color: #e5c07b
+}
+
+.nf {
+    color: #abb2bf
+}
+
+.nl {
+    color: #e5c07b
+}
+
+.nn {
+    color: #abb2bf
+}
+
+.nx {
+    color: #abb2bf
+}
+
+.py {
+    color: #e5c07b
+}
+
+.nt {
+    color: #e06c75
+}
+
+.nv {
+    color: #e5c07b
+}
+
+.ow {
+    font-weight: 700
+}
+
+.w {
+    color: #f8f8f2
+}
+
+.mf {
+    color: #d19a66
+}
+
+.mh {
+    color: #d19a66
+}
+
+.mi {
+    color: #d19a66
+}
+
+.mo {
+    color: #d19a66
+}
+
+.sb {
+    color: #98c379
+}
+
+.sc {
+    color: #98c379
+}
+
+.sd {
+    color: #98c379
+}
+
+.s2 {
+    color: #98c379
+}
+
+.se {
+    color: #98c379
+}
+
+.sh {
+    color: #98c379
+}
+
+.si {
+    color: #98c379
+}
+
+.sx {
+    color: #98c379
+}
+
+.sr {
+    color: #56b6c2
+}
+
+.s1 {
+    color: #98c379
+}
+
+.ss {
+    color: #56b6c2
+}
+
+.bp {
+    color: #e5c07b
+}
+
+.vc {
+    color: #e5c07b
+}
+
+.vg {
+    color: #e5c07b
+}
+
+.vi {
+    color: #e06c75
+}
+
+.il {
+    color: #d19a66
+}
+
+.gu {
+    color: #75715e
+}
+
+.gd {
+    color: #f92672
+}
+
+.gi {
+    color: #a6e22e
+}
+#+END_SRC
+* Colors
+The main point of this theme is that it matches the syntax highlighting theme of the code blocks. This is important to us since we have code blocks in almost every post so it makes sense for everything to be cohesive. We started with Atom's [[https://github.com/atom/one-dark-syntax][One Dark syntax highlight theme]] as the base@@html:<label for="mn-onedark" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-onedark" class="margin-toggle"/><span class="marginnote">@@Though what I really wanted was the [[https://github.com/ianpan870102/wilmersdorf-emacs-theme][Wilmersdorf Emacs theme]] - it didn't have an easy pygments version though so One Dark was the next on the list@@html: </span>@@, and picked out some important colors from it (the highlight colors are a bit darker than One Dark's so that they also work on a white background).
+#+BEGIN_EXPORT html
+  <details>
+  <summary>Defining colors</summary>
+  #+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+ :root {
+  --highlight-color-1: #a965bd;
+  --highlight-color-2: #709158;
+  --highlight-color-3: #e6e9ec;
+  --darkest-color: #181b20;
+  --darker-color: #282c34;
+  --lighter-color: #a89aae;
+  --lightest-color: #fff;
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+  </details>
+#+END_EXPORT
+* Fonts
+We need one for for code (fixed-font), one for long-form text (variable-font), and one for headings and things in capitals that needs to look good when it's big (condensed-font). These were the ones we picked from [[https://fonts.google.com/][Google Fonts]].
+#+BEGIN_SRC css  :tangle "static/css/astrochelys.css"
+:root {
+  --fixed-font: "Fira Code";
+  --variable-font: "Raleway";
+  --condensed-font: "Fira Sans Condensed";
+}
+#+END_SRC
+* Base CSS styles
+Before getting into writing actual HTML, we already know what kinds of HTML elements a typical webpage has - text, links, headings, images, code blocks, and, occasionally, blockquotes. So we start out by styling these with CSS with the colors, fonts, and sizes we have in mind. 
+** Body
+Most of the page is going to be white with dark text and normal writing font. The size of the font is ~1em~ which means roughly 16px and gives us a good unit for measurement. The ~div~ part makes it so that every time you use a div in HTML, it's in its own newline-separated block. We also make some classes we can use for centering and capitalizing text.
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling body text</summary>
+#+END_EXPORT  
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+body {
+ color:var(--darkest-color);
+ background-color:var(--lightest-color);
+ font-family: var(--variable-font);
+ font-size: 1em;
+ margin:0
+}
+div {
+ display:block
+}
+.center-text {
+ text-align:center
+}
+.uppercase {
+ text-transform: uppercase
+}
+.condensed-font {
+ font-family: var(--condensed-font), sans-serif;
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+** Links
+Hyperlinks are a nice place to add some pizzazz - a color for the text that changes and becomes underlined when you hover.
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling hyperlinks</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+a {
+ text-decoration:none;
+ color:var(--highlight-color-1);
+ font-weight: bold;
+}
+a:hover {
+ color:var(--highlight-color-2);
+ border-bottom:1px solid var(--highlight-color-2)
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Headings
+These are usually going to be big so we use our narrower font and make sure there's enough space in between lines. The first set of ~font-size~ lines define what the sizes will be on laptop and desktop screens while the second set is for smaller screens (<48em width).
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling headers</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+   font-family:var(--condensed-font),sans-serif;
+   line-height: 1em;
+  }
+  h1 {font-size:3em}
+  h2 {font-size:2.5em}
+  h3 {font-size:2em}
+  h4 {font-size:1.5em}
+  h5 {font-size:1em}
+  h6 {font-size:1em}
+  @media screen and (max-width:48em) {
+      h1 {font-size:2em}
+      h2 {font-size:1.8em}
+      h3 {font-size:1.5em}
+      h4 {font-size:1.2em}
+      h5 {font-size:1em}
+      h6 {font-size:1em}
+  }
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Code blocks
+There's two kinds of code - ~inline code~ (which is just <code> in HTML) and code blocks like the one below (which are surrounded by <pre> tags). The former just has a different font and a light background color to distinguish it from text, while the latter has a full gamut of margins and padding and so on.
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling code</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+code {
+  background: var(--highlight-color-3);
+  font-family: var(--fixed-font), monospace;
+}
+pre, pre code {
+  background: var(--darker-color);
+  font-family: var(--fixed-font), monospace;
+  color: var(--lighter-color);
+  font-size:1em;
+  width: inherit;  
+  max-width: 100%; 
+  height: auto;   
+  padding:10px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: block;
+  overflow-x:auto;
+  -webkit-text-size-adjust:none
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Images
+Images need to stay in their lane, so they're resized to fit into whichever div they're defined in, with some padding.
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling images</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+img {
+  width: inherit;  
+  max-width: 100%; 
+  height: auto;   
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Blockquotes
+People are interesting and say quotable things often. Here's one
+#+BEGIN_QUOTE
+  Human beings, little bags of thinking water held up briefly by fragile accumulations of calcium
+
+  *Terry Pratchett (Pyramids)*
+#+END_QUOTE
+We adapted this [[https://codepen.io/cliftwalker/pen/XJaEXY][codepen]] for a simple blockquote with our highlight colors.
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling blockquotes</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  blockquote{
+    font-size: 1em;
+    width: 95%;
+    margin: 1em auto;
+    font-family: inherit;
+    font-style: italic;
+    color: var(--darker-color);
+    padding: 1em 2em 1em 3em;
+    border-left: 1em solid var(--highlight-color-1) ;
+    position: relative;
+    background:var(--highlight-color-3);
+  }
+
+  blockquote::before{
+    font-family:var(--variable-font), serif;
+    content: "\201C";
+    color:var(--highlight-color-1);
+    font-size:4em;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  blockquote::after{
+    content: '';
+  }  
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Horizontal lines
+These are the thin purple lines under the title in the sidebar and, if you're on a bigger screen, surrounding the little margin note on top about this post.
+#+BEGIN_EXPORT html
+<details>
+<summary>Styling horizontal lines</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+hr {
+ border:0;
+ border-top:1px solid var(--highlight-color-1);
+ margin:0.4em 0
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+* HTML Templates
+[[https://blog.getpelican.com/][Pelican]] has some nice documentation on [[https://docs.getpelican.com/en/stable/themes.html][creating a theme]] which basically says that you need up to 11 HTML template files, and you can use [[https://palletsprojects.com/p/jinja/][Jinja]] in them@@html:<label for="mn-jinja" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-jinja" class="margin-toggle"/><span class="marginnote">@@Jinja is a templating system that lets you, among other things, use for loops and variables and extend other HTML files.@@html: </span>@@. But you can also get away with just writing a ~base.html~ file and letting it use the default simple theme for the rest. We compromised and have 6 templates all of which extend ~base.html~. This section has just the ~<head>~ elements of all the templates.
+*** Base.html 
+~base.html~ has the stuff that needs to be present on every page (like the sidebar, links to all the different pages, an area for the content etc.). Importantly, it loads the PureCSS Grid system, Google Fonts, and the CSS stylesheets we're making.
+#+BEGIN_EXPORT html
+<details>
+<summary>base.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/base.html"
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>{% block title %}{% endblock %}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% block meta %}{% endblock %}
+      {#PureCSS#}
+      <!--[if lte IE 8]>
+          <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+      <![endif]-->
+      <!--[if gt IE 8]><!-->
+           <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+      <!--<![endif]-->
+      
+      {#Fonts#}
+      <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway&display=swap" rel="stylesheet">
+
+      {#Stylesheets#}
+      {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}
+          <link href="/{{ ASSET_URL }}" rel="stylesheet">
+      {% endassets %}
+  </head>
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+Since all the other templates extend this one, their <head>s are a bit boring, they just define the title.
+*** Index.html
+The home page
+#+BEGIN_EXPORT html
+<details>
+<summary>index.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/index.html"
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+*** Article.html
+This is the template for a post, such as this one.
+#+BEGIN_EXPORT html
+<details>
+<summary>article.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/article.html"
+{% extends "base.html" %}
+{% block title %}
+{{ article.title|striptags|e }} {%if article.subtitle %} - {{ article.subtitle|striptags|e }} {% endif %} · {{ super() }}
+{% endblock title %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+*** Page.html
+The template for our Dailies page.
+#+BEGIN_EXPORT html
+<details>
+<summary>page.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/page.html"
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+*** Categories.html 
+This page lists posts grouped by category
+#+BEGIN_EXPORT html
+<details>
+<summary>categories.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/categories.html"
+{% extends "base.html" %}
+{% block title %}Categories{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+*** Tags.html
+This page lists posts grouped by tag
+#+BEGIN_EXPORT html
+<details>
+<summary>tags.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/tags.html"
+{% extends "base.html" %}
+{% block title %}Tags{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+*** Archives.html
+And finally, this page lists posts grouped by year
+#+BEGIN_EXPORT html
+<details>
+<summary>archives.html head</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/archives.html"
+{% extends "base.html" %}
+{% block title %}Archives{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+* Layout
+The layout is something all pages will have in common so we set it up in base.html. On computer screens, the page is divided into 4 parts, 1/4th for the sidebar, 2/4th for the text, and 1/4th for the margin. This is easy enough to set up with PureCSS.
+In base.html:
+#+BEGIN_SRC html :tangle templates/base.html
+    <body>
+    <div id="layout" class="pure-g">
+#+END_SRC
+And, in astrochelys.css:
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+ * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#layout {
+    padding: 0;
+}
+#+END_SRC
+** Sidebar
+First the sidebar: there's the site name and description, a list of links to different pages, and a section for the table of contents (toc). The TOC changes per page though, so in base we put in a jinja block that we can fill in later in the other templates.
+#+BEGIN_EXPORT html
+<details>
+<summary>Sidebar in base.html</summary>
+#+END_EXPORT
+#+CAPTION: Sidebar in base.html
+#+BEGIN_SRC html :tangle "templates/base.html"
+  {#This means the sidebar is full-width on mobile (u) and 1/4 on larger screens (md)#}
+  <div class="sidebar pure-u-1 pure-u-md-1-4">
+      <nav id="sidebar">
+        <div class="sidebar-content">
+          <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
+          <div><small>{{ BIO_TEXT }}</small></div>
+          <div id="sidebar-links">
+            <small>
+              <a href="/">Posts</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="/pages/dailies">Dailies</a>
+              <br>
+              <a href="/categories">Categories</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="/tags">Tags</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="/archives">Archives</a>
+            </small>
+          </div>
+        </div>
+        <hr>
+        <div class="sidebar-content">
+          <div class="toc">{% block toc %}{% endblock %}</div>
+        </div>
+      </nav>
+  </div>
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+The associated CSS makes the sidebar the same color as code block backgrounds (darker-color) and uses the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
+#+BEGIN_EXPORT html
+<details>
+<summary>Sidebar CSS</summary>
+#+END_EXPORT
+#+CAPTION: Sidebar CSS
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  .sidebar {
+      background: var(--darker-color);
+      color: var(--lighter-color);
+      font-family: var(--condensed-font), sans-serif;
+      text-align: center;
+      font-size: 1.5em;
+  }
+  .sitename {
+      font-family: Courier, sans-serif;
+      font-size: 1.5em;
+  }
+  .sidebar-content {
+      margin: 5%;
+      width: 90%;
+      padding: 0.5em;
+      font-size: 90%;
+  }
+  .sidebar li a, .sidebar .toc a {
+      color: var(--highlight-color-2);
+  }
+  .sidebar ul {
+      list-style-type:none;
+      margin:0;
+      padding:0;
+      font-size: 80%;
+  }
+  .sidebar a {
+      font-weight: normal;
+      border: 0;
+  }
+  @media (min-width: 48em) {
+      .sidebar {
+             position: fixed;
+             top: 0;
+             bottom: 0;
+         }
+  }
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Phone Header
+Phone screens won't have a sidebar but will have a header at the top that links to the other pages. This stays the same for all pages, so we only have to talk about it in the base.
+#+BEGIN_EXPORT html
+<details>
+<summary>Phone header in base.html</summary>
+#+END_EXPORT
+#+CAPTION: Phone header in base.html
+#+BEGIN_SRC html :tangle templates/base.html
+  <nav class="phone-header">
+    <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
+    <div><small>{{ BIO_TEXT }}</small></div>
+    <div><small>
+          <a href="/">Posts</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="/pages/dailies">Dailies</a>
+          <br>
+          <a href="/categories">Categories</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="/tags">Tags</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="/archives">Archives</a>
+      </small></div>
+  </nav>
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+The CSS turns off the phone header for larger screens, turns off the sidebar for phones, and styles the header pretty similar to the sidebar.
+#+BEGIN_EXPORT html
+<details>
+<summary>Phone header CSS</summary>
+#+END_EXPORT
+#+CAPTION: Phone header CSS
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  @media (min-width: 48em) {
+      .phone-header {
+          display: none;
+      }
+  }
+  @media screen and (max-width:48em) {
+      .sidebar {
+          display:none
+      }
+      .phone-header {
+          display: block;
+          text-align: center;
+          background: var(--darker-color);
+          color: var(--lighter-color);
+          min-height: 3.5em;
+          position: relative;
+          padding: 1em;
+          font-size: 1.3em;
+          font-family: var(--condensed-font);
+      }
+      .phone-header a {
+          font-weight: normal;
+          border: 0;
+      }
+  }
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Content
+The page content (i.e. what you're reading now) changes per page of course, but in the base we can already define how much space it takes - 3/4th of the page for both the text and the margin in the case of larger screens, and the full screen for phones. 
+#+BEGIN_EXPORT html
+<details>
+<summary>Content in base.html</summary>
+#+END_EXPORT
+#+CAPTION: Content in base.html
+#+BEGIN_SRC html :tangle templates/base.html
+        {#The main text (+margin) is full width on mobile and 3/4th on computer screens#}
+        <div class="content pure-u-1 pure-u-md-3-4">
+            <article>
+                {% block content %}{% endblock %}
+                <hr>
+            </article>
+        </div>
+    </div> {#Closes the layout div#}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<label for="sn-analytics" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-analytics" class="margin-toggle"/>
+<span class="sidenote">
+#+END_EXPORT
+At the end of base.html is also where you add in things like analytics. No idea what this code does but hey, analytics is going away soon anyway. 
+#+CAPTION: Analytics in base.html
+#+BEGIN_EXPORT html
+<details>
+<summary>Analytics in base.html</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle templates/base.html
+    {% if GOOGLE_ANALYTICS %}
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ DOMAIN }}');
+            ga('send', 'pageview');
+        </script>
+    {% endif %}
+    </body>
+    </html>
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+#+BEGIN_EXPORT html
+</span>
+#+END_EXPORT
+Content looks different on screens and phones though - on a computer screen it should take up the center half of the page (~width: 50%~), leaving a fourth on the left for the sidebar (~margin-left: 25%~) and a fourth on the right for the margin - this goes into the CSS. To have some breathing room next to the sidebar and the margin, there's 3.5em of padding on each side. Phone screens don't have the sidebar or the margin so there's just a bit of padding and none of the other things. Finally, normal text and paragraphs need to be justified. 
+#+BEGIN_EXPORT html
+<details>
+<summary>Content CSS</summary>
+#+END_EXPORT
+#+CAPTION: Content CSS
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  @media (min-width: 48em) {
+      .content {
+          padding: 1em 3.5em 0 3.5em;
+          margin-left: 25%;
+          width: 50%;
+      }
+  }
+  @media screen and (max-width:48em) {
+      .content {
+          padding: 2em 1em 0 1em;
+      }
+  }
+  .content p {
+      text-align: justify;
+  }
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+* Text
+** Table of Contents
+The table of contents (~block toc~) in the sidebar changes per page, so you define it differently in each HTML template. The one in index.html just lists the titles of all the posts (Not ideal, need to change this to a fixed number of recent posts). The one in article.html and page.html use a Pelican plugin called [[https://github.com/ingwinlu/pelican-toc][pelican-toc]] which auto-generates a table of contents for a page based on it's h1, h2, h3 etc. tags and stores it in ~article.toc~. @@html:<label for="sn-toc" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-toc" class="margin-toggle"/><span class="sidenote">@@You can control what depth of headers to consider in your ~pelicanconf.py~ - we have it set to h1, h2, and h3@@html: </span>@@
+#+BEGIN_EXPORT html
+<details>
+<summary>Table of Contents (TOC) in index.html</summary>
+#+END_EXPORT
+#+CAPTION: Table of Contents for index.html
+#+BEGIN_SRC html :tangle templates/index.html
+  {% block toc %}
+  <div class="uppercase">Recent Posts</div>
+  <hr>
+  <div>
+  {% for article in articles_page.object_list %}
+  <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+  <br>
+  {% endfor %}
+  </div>
+  {% endblock toc %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary>TOC in article.html</summary>
+#+END_EXPORT
+#+CAPTION: Table of Contents for article.html
+#+BEGIN_SRC html :tangle templates/article.html
+{% block toc %}
+{% if article.toc %}
+<div class="uppercase">{{article.title}}</div>
+<hr>
+<div class="col-lg-3 hidden-xs hidden-sm">
+    {{article.toc}}
+</div>
+{% endif %}
+{% endblock %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary>TOC in page.html</summary>
+#+END_EXPORT
+#+CAPTION: Table of Contents for page.html
+#+BEGIN_SRC html :tangle templates/page.html
+{% block toc %}
+{% if page.toc %}
+<div class="uppercase">{{page.title}}</div>
+<hr>
+<div class="col-lg-3 hidden-xs hidden-sm">
+    {{page.toc}}
+</div>
+{% endif %}
+{% endblock %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+For the Tags page we list all tags (in alphabetical order) separated by a "." (since we're rather tag-happy and putting them in different lines means the sidebar would run out of space pretty quickly). Clicking on one should jump to the part of the page for that tag, so we use a relative link here with ~#~ that we'll re-use in the content section. The Categories page sidebar is similar. And we don't yet have a sidebar for the Archives since I wasn't entirely sure how to code it in - maybe later.
+#+BEGIN_EXPORT html
+<details>
+<summary>TOC in tags.html</summary>
+#+END_EXPORT
+#+CAPTION: Table of Contents for tags.html
+#+BEGIN_SRC html :tangle templates/tags.html
+{% block toc %}
+<div class="uppercase">Tags</div>
+<hr>
+<div>
+    {% for tag, articles in tags|sort %}
+    <a href="#{{ tag.slug }}-ref">{{ tag }}</a>&nbsp;.&nbsp;
+    {% endfor %}
+</div>
+{% endblock toc %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary>TOC in categories.html</summary>
+#+END_EXPORT
+#+CAPTION: Table of Contents for categories.html
+#+BEGIN_SRC html :tangle templates/categories.html
+{% block toc %}
+<div class="uppercase">Categories</div>
+<hr>
+<div>
+{% for category, articles in categories %}
+<a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('categories') }}#{{ category }}-ref">{{ category }}</a><br>
+{% endfor %}
+</div>
+{% endblock toc %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Content
+The Index page gives the titles, subtitles, and summaries of all our posts.
+#+BEGIN_EXPORT html
+<details>
+<summary>Table of Contents (TOC) in index.html</summary>
+#+END_EXPORT
+#+CAPTION: Content in index.html
+#+BEGIN_SRC html :tangle templates/index.html
+  {% block content %}
+  <section id="content">
+    {% for article in articles_page.object_list %}
+    <article class="hentry">
+      <div class="marginnote">
+        <div class="condensed-font">
+          <time class="published" datetime="{{ article.date.isoformat() }}">
+            {{ article.locale_date }}
+          </time>
+        </div>
+      </div>
+      <div class="article-title">
+        <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+        <h4>
+          {%if article.subtitle %}
+          {{ article.subtitle }}
+          {% endif %}
+        </h4>
+      </div>
+      <div class="article-content"> {{ article.summary }} </div>
+    </article>
+    {% endfor %}
+    {% if articles_page.has_other_pages() %}
+    {% include 'pagination.html' %}
+    {% endif %}
+  </section>
+  {% endblock content %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+Sometimes post titles get messed up on smaller screens so this CSS just let's it wrap words in any way possible to make it fit on the screen.
+#+CAPTION: article-title CSS
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  @media screen and (max-width:48em) {
+        .article-title {
+            word-wrap: break-word;
+            font-family: var(--condensed-font);
+        }
+    }
+#+END_SRC
+Before starting an article, we'd like some information about it - when it was published, what tags are associated with it, which category it belongs to etc. This is the article information - it's stored in a margin note and it's not visible on phones (where it made more sense to concentrate on the content). Then you have the title (and subtitle), followed by the actual content.
+#+BEGIN_EXPORT html
+<details>
+<summary>Content in article.html</summary>
+#+END_EXPORT
+#+CAPTION: Content in article.html
+#+BEGIN_SRC html :tangle templates/article.html
+    {% block content %}
+    <section id="content" class="body">
+        <div class="marginnote">
+          <hr>
+          <div class="article-information">
+            <div class="article-information-heading uppercase">Published</div>
+            <time class="published" datetime="{{ article.date.isoformat() }}">
+              {{ article.locale_date }}
+            </time>
+            {% if article.modified %}
+            <div class="article-information-heading uppercase">Modified</div>
+            <time class="modified" datetime="{{ article.modified.isoformat() }}">
+              {{ article.locale_modified }}
+            </time>
+            {% endif %}
+            {% if article.category %}
+            <div class="article-information-heading uppercase">Category</div>
+            <div>
+              <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+            </div>
+            {% endif %}
+            {% if article.tags %}
+            <div class="article-information-heading uppercase">Tags</div>
+            <div>
+              {% for tag in article.tags %}
+              <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
+            </div>
+          <hr>
+        </div>
+        <header><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
+          <h1 class="article-title">
+            {{ article.title }}
+          </h1>
+          <h3>
+            {% if article.subtitle %}
+            {{ article.subtitle }}
+            {% endif %}
+          </h3>
+        </a></header>
+        <div class="article-content">
+          {{ article.content }}
+        </div>
+    </section>
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<label for="mn-disqus" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-disqus" class="margin-toggle"/>
+<span class="marginnote">
+#+END_EXPORT
+We use [[https://disqus.com/][Disqus]] to add a way for people to comment / vote on articles.
+#+BEGIN_EXPORT html
+<details>
+<summary>Disqus support in article.html</summary>
+#+END_EXPORT
+#+CAPTION: Disqus support in article.html
+#+BEGIN_SRC html :tangle "templates/article.html"
+{% if DISQUS_SITENAME and article.status != "draft" %}
+	<hr>
+	<!-- Disqus -->
+	<div id="disqus_thread"></div>
+	<script>
+	var disqus_config = function() {
+		this.page.url = '{{ SITEURL }}/{{ article.url }}';
+		this.page.identifier = '{{ article.url }}';
+	};
+	(function() {
+		var d = document, s = d.createElement('script');
+		s.src = '//{{ DISQUS_SITENAME }}.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	{% endif %}
+{% endblock %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+#+BEGIN_EXPORT html
+</span>
+#+END_EXPORT
+
+Some minor styling:
+#+CAPTION: Article CSS 
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  .article-information {
+      font-family: var(--condensed-font);
+  }
+  .article-information-heading {
+      color: var(--lighter-color);
+  }
+#+END_SRC
+
+#+BEGIN_EXPORT html
+<details>
+<summary>Page.html has pretty straightforward content</summary>
+#+END_EXPORT
+#+CAPTION: Content in page.html
+#+BEGIN_SRC html :tangle templates/page.html
+  {% block content %}
+  <header><h1>{{ page.title }}</h1></header>
+  {{ page.content }}
+  {% if page.modified %}
+  <p>Last updated: {{ page.locale_modified }}</p>
+  {% endif %}
+  {% endblock %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+We really liked the Tags page from pelican-elegant, which starts off with a sort of cloud of all tags. Turns out it's just a list but then you style it with CSS. After that there's a section for each tag listing the articles associated with it. We put each article's published date in a margin note to use up more of the page. 
+#+BEGIN_EXPORT html
+<details>
+<summary>Content in tags.html</summary>
+#+END_EXPORT
+#+CAPTION: Content in tags.html
+#+BEGIN_SRC html :tangle templates/tags.html
+    {% block content %}
+    <header>
+        <h2><a href="{{ SITEURL }}/{{ TAGS_URL|default('tags') }}">All Tags</a></h2>
+    </header>
+    <ul class="list-of-tags">
+        {% for tag, articles in tags|sort %}
+        <li>
+            {% set num = articles|count %}
+            <a href="#{{ tag.slug }}-ref">{{ tag }}<span>{{ num }}</span></a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% for tag, articles in tags|sort %}
+    <div>
+      <h3 id="{{ tag.slug }}-ref" class="tag-title">{{ tag }}</h3>
+        {% for article in articles|sort(reverse = true, attribute = 'date') %}
+        <div class="marginnote">
+          <div class="condensed-font">
+            <time class="published" datetime="{{ article.date.isoformat() }}">
+              {{ article.locale_date }}
+            </time>
+          </div>
+        </div>
+        <div class="article-title">
+          <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}<br></a>
+          {%if article.subtitle %}
+          {{ article.subtitle }}
+          {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endblock content %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary>Tags list CSS</summary>
+#+END_EXPORT
+#+CAPTION: Tags list CSS
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+.list-of-tags {
+    font-family: var(--condensed-font), sans-serif;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+.list-of-tags li {
+    float: left;
+    line-height: 1.5em;
+    margin: 0;
+}
+.list-of-tags a {
+    background: var(--highlight-color-3);
+    border-radius: 3px;
+    color: var(--darker-color);
+    margin: 2px;
+    padding: 0.1em 0.4em;
+    text-decoration: none;
+}
+.list-of-tags a span {
+    font-size: 0.8em;
+    vertical-align: super;
+}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+The Categories and Archives pages are pretty much the same as the tags page except without the cloud. We lifted archives.html mostly from pelican-elegant, though there they also make it so that you can expand each year separately - seemed overkill so this just lists by year.
+#+BEGIN_EXPORT html
+<details>
+<summary>Content in categories.html</summary>
+#+END_EXPORT
+#+CAPTION: Content in categories.html
+#+BEGIN_SRC html :tangle templates/categories.html
+  {% block content %}
+  <header>
+      <h2><a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('categories') }}">Categories</a></h2>
+  </header>
+  {% for category, articles in categories %}
+  <div>
+    <h3>
+      {% set num = articles|count %}
+      {{ category }} ({{ num }})
+    </h3>
+    <div id="{{ category.slug }}-ref">
+      {% for article in articles %}
+      <div class="marginnote">
+      <div class="condensed-font">
+        <time class="published" datetime="{{ article.date.isoformat() }}">
+          {{ article.locale_date }}
+        </time>
+      </div>
+      </div>
+      <div class="article-title">
+        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}<br></a>
+        {%if article.subtitle %}
+        {{ article.subtitle }}
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endblock content %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary>Content in archives.html</summary>
+#+END_EXPORT
+#+CAPTION: Content in archives.html
+#+BEGIN_SRC html :tangle templates/archives.html
+  {% block content %}
+  <h1>Archives</h1>
+  {% for article in dates %}
+  {% set year = article.date.strftime('%Y') %}
+  {% if loop.first %}
+  <h2 id="{{year }}"><a href="#{{year}}">{{ year }}</a></h2>
+  {% else %}
+  {% set prevyear = loop.previtem.date.strftime('%Y') %}
+  {% if prevyear != year %}
+  <h2 id="{{year }}"><a href="#{{year}}">{{ year }}</a></h2>
+  {% endif %}
+  {% endif %}
+  <article itemscope>
+    {% set month = article.date.strftime('%m') %}
+    {% set day = article.date.strftime('%d') %}
+    <div class="marginnote">
+    <div class="condensed-font">
+      <time class="published" datetime="{{ article.date.isoformat() }}">
+        {{ article.locale_date }}
+      </time>
+    </div>
+    </div>
+    <div class="article-title">
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}<br></a>
+      {%if article.subtitle %}
+      {{ article.subtitle }}
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+  {% endblock content %}
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+** Margin notes
+Well, we have a whole one-fourth of the page free on the right. Let's make some notes n the margin. This code is from [[https://edwardtufte.github.io/tufte-css/][tufte-css]] with minor modifications, sidenotes have a number attached and margin notes don't but both have a small arrow symbol pointing to the right. On phones you can click on the number / arrow and the note pops up. I kept the margin note label on normal screens too, just to have an indicator that there's something to read on the right.
+#+BEGIN_EXPORT html
+<details>
+<summary>Margin CSS</summary>
+#+END_EXPORT
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+  .body {
+      counter-reset: sidenote-counter;
+  }
+  .sidenote,
+  .marginnote {
+      float: right;
+      clear: right;
+      margin-right: -60%;
+      width: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 100%;
+      font-family: var(--variable-font), sans-serif;
+      vertical-align: baseline;
+      position: relative; 
+  }
+  .sidenote-number {
+      counter-increment: sidenote-counter; 
+  }
+  .sidenote-number:after,
+  .sidenote:before {
+      font-family: var(--fixed-font), monospace;
+      position: relative;
+      vertical-align: baseline; 
+  }
+  .sidenote-number:after {
+      content: counter(sidenote-counter) "\00bb";
+      font-size: 100%;
+      top: -0.2em;
+  }
+  .sidenote:before {
+      content: counter(sidenote-counter) "\00bb ";
+      font-size: 100%;
+      top: -0.2em; 
+  }
+  blockquote .sidenote,
+  blockquote .marginnote {
+      margin-right: -82%;
+      min-width: 59%;
+      text-align: left; 
+  }
+  .marginnote hr {
+    color: var(--highlight-color-1);
+  }
+  label.sidenote-number {
+      display: inline; 
+  }
+  label.margin-toggle:not(.sidenote-number) {
+      display: inline; 
+  }
+  input.margin-toggle {
+      display: none; 
+  }
+  label.sidenote-number {
+      display: inline; 
+  }
+  @media screen and (max-width:48em) {
+      label.margin-toggle:not(.sidenote-number) {
+          display: inline; 
+      }
+      .sidenote,
+      .marginnote {
+          display: none; 
+      }
+      .margin-toggle:checked + .sidenote,
+      .margin-toggle:checked + .marginnote {
+          display: block;
+          float: left;
+          left: 1em;
+          clear: both;
+          width: 95%;
+          margin: 1em 2.5%;
+          vertical-align: baseline;
+          position: relative; 
+      }
+      label {
+          cursor: pointer; 
+      }
+  }
+  @media print {
+   .marginnote,
+   .sidenote {
+    font-size:80%;
+   }
+  }
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+To actually make a note in your article you need some raw HTML, easy enough to add into markdown, jupyter, and org@@html:<label for="sn-org" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-org" class="margin-toggle"/><span class="sidenote">@@I made some org-capture templates for adding these notes (over at [[https://out-of-cheese-error.netlify.com/spacemacs-config][this post with my .spacemacs]]) so it's as easy as writing normal content@@html: </span>@@ files:
+#+BEGIN_SRC html
+{#Margin Note#}
+<label for="mn-note" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-note" class="margin-toggle"/><span class="marginnote">
+your note here
+</span>
+
+{#Side Note#}
+<label for="sn-note" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-note" class="margin-toggle"/><span class="sidenote">
+your note here
+</span>
+#+END_SRC
+* Next steps
+Nothing really, we're pretty happy with this theme for now. The nice thing is, if we get bored of the color scheme, we just need to pick a new (pygmentizable) syntax highlighting theme and change the colors accordingly. There's no social media stuff for now, I guess we could at least add a GitHub link in the sidebar. Also some vector art could be nice, [[https://en.wikipedia.org/wiki/Radiated_tortoise][/Astrochelys radiata/]] perhaps. 
