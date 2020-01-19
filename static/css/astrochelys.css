@@ -54,11 +54,11 @@ h6 {
  font-family:var(--condensed-font),sans-serif;
  line-height: 1em;
 }
-h1 {font-size:3em}
-h2 {font-size:2.5em}
-h3 {font-size:2em}
+h1 {font-size:2.5em}
+h2 {font-size:2.2em}
+h3 {font-size:1.8em}
 h4 {font-size:1.5em}
-h5 {font-size:1em}
+h5 {font-size:1.2em}
 h6 {font-size:1em}
 @media screen and (max-width:48em) {
     h1 {font-size:2em}
@@ -144,7 +144,7 @@ hr {
     color: var(--lighter-color);
     font-family: var(--condensed-font), sans-serif;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 .sitename {
     font-family: var(--sitename-font), monospace;
@@ -161,7 +161,7 @@ hr {
     margin: 5%;
     width: 90%;
     padding: 0.5em;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 .sidebar ul {
     list-style-type:none;
@@ -194,7 +194,7 @@ hr {
         min-height: 3.5em;
         position: relative;
         padding: 1em;
-        font-size: 1.3em;
+        font-size: 1em;
         font-family: var(--condensed-font);
     }
     .phone-header a {

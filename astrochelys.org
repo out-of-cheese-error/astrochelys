@@ -354,10 +354,6 @@ div {
 #+END_EXPORT
 ** Links
 Hyperlinks are a nice place to add some pizzazz - a color for the text that changes and becomes underlined when you hover.
-#+BEGIN_EXPORT html
-<details>
-<summary>Styling hyperlinks</summary>
-#+END_EXPORT
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 a {
  text-decoration:none;
@@ -369,10 +365,6 @@ a:hover {
  border-bottom:1px solid var(--highlight-color-2)
 }
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
-
 ** Headings
 These are usually going to be big so we use our narrower font and make sure there's enough space in between lines. The first set of ~font-size~ lines define what the sizes will be on laptop and desktop screens while the second set is for smaller screens (<48em width).
 #+BEGIN_EXPORT html
@@ -389,11 +381,11 @@ These are usually going to be big so we use our narrower font and make sure ther
    font-family:var(--condensed-font),sans-serif;
    line-height: 1em;
   }
-  h1 {font-size:3em}
-  h2 {font-size:2.5em}
-  h3 {font-size:2em}
+  h1 {font-size:2.5em}
+  h2 {font-size:2.2em}
+  h3 {font-size:1.8em}
   h4 {font-size:1.5em}
-  h5 {font-size:1em}
+  h5 {font-size:1.2em}
   h6 {font-size:1em}
   @media screen and (max-width:48em) {
       h1 {font-size:2em}
@@ -504,10 +496,6 @@ We adapted this [[https://codepen.io/cliftwalker/pen/XJaEXY][codepen]] for a sim
 
 ** Horizontal lines
 These are the thin purple lines under the title in the sidebar and, if you're on a bigger screen, surrounding the little margin note on top about this post.
-#+BEGIN_EXPORT html
-<details>
-<summary>Styling horizontal lines</summary>
-#+END_EXPORT
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 hr {
  border:0;
@@ -515,9 +503,6 @@ hr {
  margin:0.4em 0
 }
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 * HTML Templates
 [[https://blog.getpelican.com/][Pelican]] has some nice documentation on [[https://docs.getpelican.com/en/stable/themes.html][creating a theme]] which basically says that you need up to 11 HTML template files, and you can use [[https://palletsprojects.com/p/jinja/][Jinja]] in them@@html:<label for="sn-jinja" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-jinja" class="margin-toggle"/><span class="sidenote">@@Jinja is a templating system that lets you, among other things, use for loops and variables and extend other HTML files.@@html: </span>@@. But you can also get away with just writing a ~base.html~ file and letting it use the default simple theme for the rest. We compromised and have 6 templates all of which extend ~base.html~. This section has just the ~<head>~ elements of all the templates.
@@ -559,10 +544,6 @@ hr {
 Since all the other templates extend this one, their <head>s are a bit boring, they just define the title.
 *** Index.html
 The home page
-#+BEGIN_EXPORT html
-<details>
-<summary>index.html head</summary>
-#+END_EXPORT
 #+BEGIN_SRC html :tangle "templates/index.html"
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }}{% endblock %}
@@ -570,16 +551,9 @@ The home page
 {{ super() }}
 {% endblock head %}
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 *** Article.html
 This is the template for a post, such as this one.
-#+BEGIN_EXPORT html
-<details>
-<summary>article.html head</summary>
-#+END_EXPORT
 #+BEGIN_SRC html :tangle "templates/article.html"
 {% extends "base.html" %}
 {% block title %}
@@ -589,16 +563,9 @@ This is the template for a post, such as this one.
 {{ super() }}
 {% endblock head %}
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 *** Page.html
 The template for our Dailies page.
-#+BEGIN_EXPORT html
-<details>
-<summary>page.html head</summary>
-#+END_EXPORT
 #+BEGIN_SRC html :tangle "templates/page.html"
 {% extends "base.html" %}
 {% block title %}{{ page.title }}{% endblock %}
@@ -606,16 +573,9 @@ The template for our Dailies page.
 {{ super() }}
 {% endblock head %}
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 *** Categories.html 
 This page lists posts grouped by category
-#+BEGIN_EXPORT html
-<details>
-<summary>categories.html head</summary>
-#+END_EXPORT
 #+BEGIN_SRC html :tangle "templates/categories.html"
 {% extends "base.html" %}
 {% block title %}Categories{% endblock %}
@@ -623,16 +583,9 @@ This page lists posts grouped by category
 {{ super() }}
 {% endblock head %}
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 *** Tags.html
 This page lists posts grouped by tag
-#+BEGIN_EXPORT html
-<details>
-<summary>tags.html head</summary>
-#+END_EXPORT
 #+BEGIN_SRC html :tangle "templates/tags.html"
 {% extends "base.html" %}
 {% block title %}Tags{% endblock %}
@@ -640,16 +593,9 @@ This page lists posts grouped by tag
 {{ super() }}
 {% endblock head %}
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 *** Archives.html
 And finally, this page lists posts grouped by year
-#+BEGIN_EXPORT html
-<details>
-<summary>archives.html head</summary>
-#+END_EXPORT
 #+BEGIN_SRC html :tangle "templates/archives.html"
 {% extends "base.html" %}
 {% block title %}Archives{% endblock %}
@@ -657,9 +603,6 @@ And finally, this page lists posts grouped by year
 {{ super() }}
 {% endblock head %}
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 * Layout
 The layout is something all pages will have in common so we set it up in base.html with PureCSS.
@@ -736,7 +679,7 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
       color: var(--lighter-color);
       font-family: var(--condensed-font), sans-serif;
       text-align: center;
-      font-size: 1.2em;
+      font-size: 1em;
   }
   .sitename {
       font-family: var(--sitename-font), monospace;
@@ -753,7 +696,7 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
       margin: 5%;
       width: 90%;
       padding: 0.5em;
-      font-size: 1.2em;
+      font-size: 1em;
   }
   .sidebar ul {
       list-style-type:none;
@@ -825,7 +768,7 @@ The CSS turns off the phone header for larger screens, turns off the sidebar for
           min-height: 3.5em;
           position: relative;
           padding: 1em;
-          font-size: 1.3em;
+          font-size: 1em;
           font-family: var(--condensed-font);
       }
       .phone-header a {
