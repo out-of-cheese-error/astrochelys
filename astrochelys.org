@@ -9,9 +9,9 @@
 #+OPTIONS: toc:nil
 #+OPTIONS: num:nil
 
-So we decided that the blog could use an upgrade in terms of theming. The [[https://elegant.oncrashreboot.com/][pelican-elegant]] theme that we've been using so far is nice and has plenty of features but it's not extremely memorable given that you could easily stumble across other blogs with the same theme. It's about time for something unique. Problem is, we're not really CSS/HTML people. If forced to make websites showing off tools for work, we usually default to using [[https://plot.ly/dash/][Dash]]. Even starting this, we spent a fruitless half hour looking for visual GUI kind of tools that you could drag and drop stuff into and spit out HTML and CSS@@html:<label for="sn-visual" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-visual" class="margin-toggle"/><span class="sidenote">@@It's still kind of crazy to us that there isn't a tool like this. I mean, the Web Developer in Firefox already lets you click on parts of the page and change around properties, why can't you just use it to make something from a blank page? We're probably missing something here - there's no way people in such a visual field spend all their time typing out hex colors@@html: </span>@@. Anyway, buckled down and wrote some HTML/CSS. 
+So we decided that the blog could use an upgrade in terms of theming. The [[https://elegant.oncrashreboot.com/][pelican-elegant]] theme that we'd been using so far is nice and has plenty of features but it's not extremely memorable given that you could easily stumble across other blogs with the same theme. It's about time for something unique. Problem is, we're not really CSS/HTML people. If forced to make websites showing off tools for work, we usually default to using [[https://plot.ly/dash/][Dash]]. Even starting this, we spent a fruitless half hour looking for visual GUI kind of tools that you could drag and drop stuff into and spit out HTML and CSS@@html:<label for="sn-visual" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-visual" class="margin-toggle"/><span class="sidenote">@@It's still kind of crazy to us that there isn't a tool like this. I mean, Web Developer in Firefox already lets you click on parts of the page and change around properties, why can't you just use it to make something from a blank page? We're probably missing something here - there's no way people in such a visual field spend all their time typing out hex colors@@html: </span>@@. Anyway, buckled down and wrote some HTML/CSS. 
 
-Well I say wrote, but credit where credit's due - most of this is from all around the internet. We first found Tufte-CSS and really liked the margin notes idea, then came across [[http://cachestocaches.com/][Caches to Caches]] and rooted around Web Developer for some of its CSS, used [[https://codepen.io/cliftwalker/pen/XJaEXY][this codepen]] for some simple blockquotes, and [[https://purecss.io/][PureCSS]] to make dealing with different screen sizes easier. We even kept some of the HTML from [[https://github.com/Pelican-Elegant/elegant][pelican-elegant]].
+Well I say wrote, but credit where credit's due - most of this is from all around the internet. We first found [[https://edwardtufte.github.io/tufte-css/][Tufte-CSS]] and really liked the margin notes idea, then came across [[http://cachestocaches.com/][Caches to Caches]] and rooted around Web Developer for some of its CSS, used [[https://codepen.io/cliftwalker/pen/XJaEXY][this codepen]] for some simple blockquotes, and [[https://purecss.io/][PureCSS]] to make dealing with different screen sizes easier. We even kept some of the HTML from [[https://github.com/Pelican-Elegant/elegant][pelican-elegant]].
 
 This post is going to be a bit ambitious in that it's a literate org-mode file which tangles out to the complete CSS and HTML template files of the actual theme, found at [[https://gitlab.com/outofcheeseerror/astrochelys][the Astrochelys GitLab repository]]. For readability, most of the code blocks are collapsed and can be expanded by clicking on the little black arrow, like the one below.
 #+BEGIN_EXPORT html
@@ -34,7 +34,7 @@ This post is going to be a bit ambitious in that it's a literate org-mode file w
 </details>
 #+END_EXPORT
 
-The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-onedark" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-onedark" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the One Dark syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@.
+The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-pygments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-pygments" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the One Dark syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@.
 #+BEGIN_SRC css :tangle "static/css/pygments.css" :exports none
 .hll {
     background: #282c34
@@ -291,7 +291,7 @@ The main CSS file is called astrochelys.css and we'll be making it in parts belo
 }
 #+END_SRC
 * Colors
-The main point of this theme is that it matches the syntax highlighting theme of the code blocks. This is important to us since we have code blocks in almost every post so it makes sense for everything to be cohesive. We started with Atom's [[https://github.com/atom/one-dark-syntax][One Dark syntax highlight theme]] as the base@@html:<label for="sn-onedark" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-onedark" class="margin-toggle"/><span class="sidenote">@@Though what I really wanted was the [[https://github.com/ianpan870102/wilmersdorf-emacs-theme][Wilmersdorf Emacs theme]] - it didn't have an easy pygments version though so One Dark was the next on the list@@html: </span>@@, and picked out some important colors from it (the highlight colors are a bit darker than One Dark's so that they also work on a white background).
+The main point of this theme is that it matches the syntax highlighting theme of the code blocks. This is important to us since we have code blocks in almost every post so it makes sense for everything to be cohesive. We started with Atom's [[https://github.com/atom/one-dark-syntax][One Dark syntax highlight theme]] as the base@@html:<label for="sn-onedark" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-onedark" class="margin-toggle"/><span class="sidenote">@@What I really wanted was the [[https://github.com/ianpan870102/wilmersdorf-emacs-theme][Wilmersdorf Emacs theme]] - it didn't have an easy pygments version though so One Dark was the next on the list@@html: </span>@@, and picked out some important colors from it (with slight modifications so that they also work on a white background).
 #+BEGIN_EXPORT html
   <details>
   <summary>Defining colors</summary>
@@ -311,12 +311,13 @@ The main point of this theme is that it matches the syntax highlighting theme of
   </details>
 #+END_EXPORT
 * Fonts
-We need one for for code (fixed-font), one for long-form text (variable-font), and one for headings and things in capitals that needs to look good when it's big (condensed-font). These were the ones we picked from [[https://fonts.google.com/][Google Fonts]].
+We need one for code (fixed-font), one for long-form text (variable-font), and one for headings and things in capitals that needs to look good when they're big (condensed-font), and finally one for writing OutOFCheeseError. These were the ones we picked from [[https://fonts.google.com/][Google Fonts]].
 #+BEGIN_SRC css  :tangle "static/css/astrochelys.css"
 :root {
   --fixed-font: "Fira Code";
   --variable-font: "Raleway";
   --condensed-font: "Fira Sans Condensed";
+  --sitename-font: "VT323";
 }
 #+END_SRC
 * Base CSS styles
@@ -543,7 +544,7 @@ hr {
       <!--<![endif]-->
       
       {#Fonts#}
-      <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway|VT323&display=swap" rel="stylesheet">
 
       {#Stylesheets#}
       {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}
@@ -661,13 +662,15 @@ And finally, this page lists posts grouped by year
 #+END_EXPORT
 
 * Layout
-The layout is something all pages will have in common so we set it up in base.html. This is easy enough to set up with PureCSS.
-In base.html:
+The layout is something all pages will have in common so we set it up in base.html with PureCSS.
 #+BEGIN_SRC html :tangle templates/base.html
     <body>
     <div id="layout" class="pure-g">
 #+END_SRC
-And, in astrochelys.css:
+#+BEGIN_EXPORT html
+<details>
+<summary>And, in astrochelys.css, some things we don't /really/ understand.</summary>
+#+END_EXPORT
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
  * {
     -webkit-box-sizing: border-box;
@@ -678,8 +681,12 @@ And, in astrochelys.css:
     padding: 0;
 }
 #+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
 ** Sidebar
-First the sidebar: there's the site name and description, a list of links to different pages, and a section for the table of contents (toc). The TOC changes per page though, so in base we put in a jinja block that we can fill in later in the other templates.
+First the sidebar: there's the site name and description, a list of links to different pages, and a section for the table of contents (TOC). The TOC changes per page though, so in base we put in a jinja block that we can fill in later in the other templates.
 #+BEGIN_EXPORT html
 <details>
 <summary>Sidebar in base.html</summary>
@@ -717,7 +724,7 @@ First the sidebar: there's the site name and description, a list of links to dif
 </details>
 #+END_EXPORT
 
-The associated CSS makes the sidebar the same color as code block backgrounds (darker-color) and uses the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
+The associated CSS makes the sidebar the same color as code block backgrounds (darker-color) and uses the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text. By setting the font-size to a relative percentage like 85% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
 #+BEGIN_EXPORT html
 <details>
 <summary>Sidebar CSS</summary>
@@ -729,30 +736,30 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
       color: var(--lighter-color);
       font-family: var(--condensed-font), sans-serif;
       text-align: center;
-      font-size: 1.5em;
+      font-size: 1.2em;
   }
   .sitename {
-      font-family: Courier, sans-serif;
-      font-size: 1.5em;
+      font-family: var(--sitename-font), monospace;
+      font-size: 1.3em;
+  }
+  .sidebar a {
+      font-weight: normal;
+      border: 0;
+  }
+  .sidebar li a, .sidebar .toc a {
+      color: var(--highlight-color-2);
   }
   .sidebar-content {
       margin: 5%;
       width: 90%;
       padding: 0.5em;
-      font-size: 90%;
-  }
-  .sidebar li a, .sidebar .toc a {
-      color: var(--highlight-color-2);
+      font-size: 1.2em;
   }
   .sidebar ul {
       list-style-type:none;
       margin:0;
       padding:0;
-      font-size: 80%;
-  }
-  .sidebar a {
-      font-weight: normal;
-      border: 0;
+      font-size: 85%;
   }
   @media (min-width: 48em) {
       .sidebar {
@@ -1456,7 +1463,7 @@ Well, we have a whole one-fourth of the page free on the right. Let's make some 
 </details>
 #+END_EXPORT
 
-To actually make a note in your article you need some raw HTML, easy enough to add into markdown, jupyter, and org@@html:<label for="sn-org" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-org" class="margin-toggle"/><span class="sidenote">@@I made some org-capture templates for adding these notes (over at [[https://out-of-cheese-error.netlify.com/spacemacs-config][this post with my .spacemacs]]) so it's as easy as writing normal content@@html: </span>@@ files:
+To actually make a note in your article you need some raw HTML, easy enough to add into markdown, jupyter, and org@@html:<label for="sn-org" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-org" class="margin-toggle"/><span class="sidenote">@I made some org-capture templates for adding these notes (over at [[https://out-of-cheese-error.netlify.com/spacemacs-config][this post with my .spacemacs]]) so it's as easy as writing normal content@@html: </span>@@ files:
 #+BEGIN_SRC html
 {#Margin Note#}
 <label for="mn-note" class="margin-toggle">&raquo;</label>
