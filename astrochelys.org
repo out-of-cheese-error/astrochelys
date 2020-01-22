@@ -321,7 +321,7 @@ We need one for code (fixed-font), one for long-form text (variable-font), and o
 }
 #+END_SRC
 * Base CSS styles
-Before getting into writing actual HTML, we already know what kinds of HTML elements a typical webpage has - text, links, headings, images, code blocks, and, occasionally, blockquotes. So we start out by styling these with CSS with the colors, fonts, and sizes we have in mind. 
+Before getting into writing actual HTML, we already know what kinds of HTML  ffelements a typical webpage has - text, links, headings, images, code blocks, and, occasionally, blockquotes. So we start out by styling these with CSS with the colors, fonts, and sizes we have in mind. 
 ** Body
 Most of the page is going to be white with dark text and normal writing font. The size of the font is ~1em~ which means roughly 16px and gives us a good unit for measurement. The ~div~ part makes it so that every time you use a div in HTML, it's in its own newline-separated block. We also make some classes we can use for centering and capitalizing text.
 #+BEGIN_EXPORT html
@@ -527,7 +527,7 @@ hr {
       <!--[if gt IE 8]><!-->
            <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
       <!--<![endif]-->
-      
+
       {#Fonts#}
       <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway|VT323&display=swap" rel="stylesheet">
 
@@ -535,12 +535,50 @@ hr {
       {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}
           <link href="/{{ ASSET_URL }}" rel="stylesheet">
       {% endassets %}
-  </head>
+
+      {#Icons#}
+      <link rel="shortcut icon" href="{{ SITEURL }}/images/favicon.ico"/>
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
-
+#+BEGIN_EXPORT html
+<label for="sn-analytics" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-analytics" class="margin-toggle"/>
+<span class="sidenote">
+#+END_EXPORT
+At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does but hey, analytics is going away soon anyway. 
+#+CAPTION: Analytics in base.html
+#+BEGIN_EXPORT html
+<details>
+<summary>Analytics in base.html</summary>
+#+END_EXPORT
+#+BEGIN_SRC html :tangle templates/base.html
+    {% if GOOGLE_ANALYTICS %}
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ DOMAIN }}');
+            ga('send', 'pageview');
+        </script>
+    {% endif %}
+    </head>
+#+END_SRC
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+#+BEGIN_EXPORT html
+</span>
+#+END_EXPORT
 Since all the other templates extend this one, their <head>s are a bit boring, they just define the title.
 *** Index.html
 The home page
@@ -667,7 +705,7 @@ First the sidebar: there's the site name and description, a list of links to dif
 </details>
 #+END_EXPORT
 
-The associated CSS makes the sidebar the same color as code block backgrounds (darker-color) and uses the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text. By setting the font-size to a relative percentage like 85% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
+The associated CSS makes the sidebar the same color as code block backgrounds (darker-color) and uses the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text. By setting the font-size to a relative percentage like 90% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
 #+BEGIN_EXPORT html
 <details>
 <summary>Sidebar CSS</summary>
@@ -689,6 +727,9 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
       font-weight: normal;
       border: 0;
   }
+  .sidebar li a:hover, .sidebar .toc a:hover {
+      color: var(--highlight-color-1);
+  }
   .sidebar li a, .sidebar .toc a {
       color: var(--highlight-color-2);
   }
@@ -702,7 +743,7 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
       list-style-type:none;
       margin:0;
       padding:0;
-      font-size: 85%;
+      font-size: 90%;
   }
   @media (min-width: 48em) {
       .sidebar {
@@ -797,49 +838,14 @@ The page content (i.e. what you're reading now) changes per page of course, but 
             </article>
         </div>
     </div> {#Closes the layout div#}
+  </body>
+ </html>
+
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
 
-#+BEGIN_EXPORT html
-<label for="sn-analytics" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-analytics" class="margin-toggle"/>
-<span class="sidenote">
-#+END_EXPORT
-At the end of base.html is also where you add in things like analytics. No idea what this code does but hey, analytics is going away soon anyway. 
-#+CAPTION: Analytics in base.html
-#+BEGIN_EXPORT html
-<details>
-<summary>Analytics in base.html</summary>
-#+END_EXPORT
-#+BEGIN_SRC html :tangle templates/base.html
-    {% if GOOGLE_ANALYTICS %}
-        <!-- Google Analytics -->
-        <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-            ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ DOMAIN }}');
-            ga('send', 'pageview');
-        </script>
-    {% endif %}
-    </body>
-    </html>
-#+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
-#+BEGIN_EXPORT html
-</span>
-#+END_EXPORT
 Content looks different on screens and phones though - on a computer screen it should take up the center half of the page (~width: 50%~), leaving a fourth on the left for the sidebar (~margin-left: 25%~) and a fourth on the right for the margin - this goes into the CSS. To have some breathing room next to the sidebar and the margin, there's 3.5em of padding on each side. Phone screens don't have the sidebar or the margin so there's just a bit of padding and none of the other things. Finally, normal text and paragraphs need to be justified. 
 #+BEGIN_EXPORT html
 <details>
@@ -1406,7 +1412,7 @@ Well, we have a whole one-fourth of the page free on the right. Let's make some 
 </details>
 #+END_EXPORT
 
-To actually make a note in your article you need some raw HTML, easy enough to add into markdown, jupyter, and org@@html:<label for="sn-org" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-org" class="margin-toggle"/><span class="sidenote">@I made some org-capture templates for adding these notes (over at [[https://out-of-cheese-error.netlify.com/spacemacs-config][this post with my .spacemacs]]) so it's as easy as writing normal content@@html: </span>@@ files:
+To actually make a note in your article you need some raw HTML, easy enough to add into markdown, jupyter, and org@@html:<label for="sn-org" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-org" class="margin-toggle"/><span class="sidenote">@@I made some org-capture templates for adding these notes (over at [[https://out-of-cheese-error.netlify.com/spacemacs-config][this post with my .spacemacs]]) so it's as easy as writing normal content@@html: </span>@@ files:
 #+BEGIN_SRC html
 {#Margin Note#}
 <label for="mn-note" class="margin-toggle">&raquo;</label>

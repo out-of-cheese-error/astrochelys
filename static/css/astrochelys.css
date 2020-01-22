@@ -154,6 +154,9 @@ hr {
     font-weight: normal;
     border: 0;
 }
+.sidebar li a:hover, .sidebar .toc a:hover {
+    color: var(--highlight-color-1);
+}
 .sidebar li a, .sidebar .toc a {
     color: var(--highlight-color-2);
 }
@@ -167,7 +170,7 @@ hr {
     list-style-type:none;
     margin:0;
     padding:0;
-    font-size: 85%;
+    font-size: 90%;
 }
 @media (min-width: 48em) {
     .sidebar {
