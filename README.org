@@ -1,5 +1,5 @@
 * The Astrochelys Pelican Theme
-This is theme we use for [[https://out-of-cheese-error.netlify.com/][OutOfCheeseError]]
+This is the theme we use for [[https://out-of-cheese-error.netlify.com/][OutOfCheeseError]]
 ** Some screenshots
 *** Index page
 #+attr_html: :width 500px
