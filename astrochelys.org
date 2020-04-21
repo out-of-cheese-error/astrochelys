@@ -1060,14 +1060,14 @@ Before starting an article, we'd like some information about it - when it was pu
             {% if article.category %}
             <div class="article-information-heading uppercase">Category</div>
             <div>
-              <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+              <a href="{{ SITEURL }}/categories#{{ article.category}}-ref">{{ article.category }}</a>
             </div>
             {% endif %}
             {% if article.tags %}
             <div class="article-information-heading uppercase">Tags</div>
             <div>
               {% for tag in article.tags %}
-              <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+              <a href="{{ SITEURL }}/tags#{{ tag }}-ref">{{ tag }}</a>
               {% endfor %}
             </div>
             {% endif %}
