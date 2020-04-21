@@ -321,7 +321,7 @@ We need one for code (fixed-font), one for long-form text (variable-font), and o
 }
 #+END_SRC
 * Base CSS styles
-Before getting into writing actual HTML, we already know what kinds of HTML  ffelements a typical webpage has - text, links, headings, images, code blocks, and, occasionally, blockquotes. So we start out by styling these with CSS with the colors, fonts, and sizes we have in mind. 
+Before getting into writing actual HTML, we already know what kinds of HTML  elements a typical webpage has - text, links, headings, images, code blocks, and, occasionally, blockquotes. So we start out by styling these with CSS with the colors, fonts, and sizes we have in mind. 
 ** Body
 Most of the page is going to be white with dark text and normal writing font. The size of the font is ~1em~ which means roughly 16px and gives us a good unit for measurement. The ~div~ part makes it so that every time you use a div in HTML, it's in its own newline-separated block. We also make some classes we can use for centering and capitalizing text.
 #+BEGIN_EXPORT html
@@ -508,6 +508,7 @@ hr {
 [[https://blog.getpelican.com/][Pelican]] has some nice documentation on [[https://docs.getpelican.com/en/stable/themes.html][creating a theme]] which basically says that you need up to 11 HTML template files, and you can use [[https://palletsprojects.com/p/jinja/][Jinja]] in them@@html:<label for="sn-jinja" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-jinja" class="margin-toggle"/><span class="sidenote">@@Jinja is a templating system that lets you, among other things, use for loops and variables and extend other HTML files.@@html: </span>@@. But you can also get away with just writing a ~base.html~ file and letting it use the default simple theme for the rest. We compromised and have 6 templates all of which extend ~base.html~. This section has just the ~<head>~ elements of all the templates.
 *** Base.html 
 ~base.html~ has the stuff that needs to be present on every page (like the sidebar, links to all the different pages, an area for the content etc.). Importantly, it loads the PureCSS Grid system, Google Fonts, and the CSS stylesheets we're making.
+@@html:<label for="mn-hypothesis" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-hypothesis" class="margin-toggle"/><span class="marginnote">@@EDIT March 3 2020: added [[https://web.hypothes.is//][Hypothesis]] support so anyone can annotate this blog (with the little buttons on the top right corner)@@html: </span>@@
 #+BEGIN_EXPORT html
 <details>
 <summary>base.html head</summary>
@@ -538,6 +539,9 @@ hr {
 
       {#Icons#}
       <link rel="shortcut icon" href="{{ SITEURL }}/images/favicon.ico"/>
+
+      {#Hypothesis#}
+      <script src="https://hypothes.is/embed.js" async></script>
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
@@ -546,7 +550,7 @@ hr {
 <label for="sn-analytics" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-analytics" class="margin-toggle"/>
 <span class="sidenote">
 #+END_EXPORT
-At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does but hey, analytics is going away soon anyway. 
+At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does but hey, analytics is going away soon anyway. *[UPDATE - 21 April 2020] - Got rid of Google Analytics for OutOfCheeseError! This is done by commenting out the ~GOOGLE_ANALYTICS~ variable in ~pelicanconf.py~. Next step, replacing Disqus with [[https://utteranc.es/][utterances]]. 
 #+CAPTION: Analytics in base.html
 #+BEGIN_EXPORT html
 <details>
@@ -674,8 +678,8 @@ First the sidebar: there's the site name and description, a list of links to dif
 #+END_EXPORT
 #+CAPTION: Sidebar in base.html
 #+BEGIN_SRC html :tangle "templates/base.html"
-  {#This means the sidebar is full-width on mobile (u) and 1/4 on larger screens (md)#}
-  <div class="sidebar pure-u-1 pure-u-md-1-4">
+  {#This means the sidebar is full-width on mobile (u) and 1/5 on larger screens (md)#}
+  <div class="sidebar pure-u-1 pure-u-md-1-5">
       <nav id="sidebar">
         <div class="sidebar-content">
           <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
@@ -830,8 +834,8 @@ The page content (i.e. what you're reading now) changes per page of course, but 
 #+END_EXPORT
 #+CAPTION: Content in base.html
 #+BEGIN_SRC html :tangle templates/base.html
-        {#The main text (+margin) is full width on mobile and 3/4th on computer screens#}
-        <div class="content pure-u-1 pure-u-md-3-4">
+        {#The main text (+margin) is full width on mobile and 4/5th on computer screens#}
+        <div class="content pure-u-1 pure-u-md-4-5">
             <article>
                 {% block content %}{% endblock %}
                 <hr>
@@ -840,13 +844,12 @@ The page content (i.e. what you're reading now) changes per page of course, but 
     </div> {#Closes the layout div#}
   </body>
  </html>
-
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
 
-Content looks different on screens and phones though - on a computer screen it should take up the center half of the page (~width: 50%~), leaving a fourth on the left for the sidebar (~margin-left: 25%~) and a fourth on the right for the margin - this goes into the CSS. To have some breathing room next to the sidebar and the margin, there's 3.5em of padding on each side. Phone screens don't have the sidebar or the margin so there's just a bit of padding and none of the other things. Finally, normal text and paragraphs need to be justified. 
+Content looks different on screens and phones though - on a computer screen it should take up the center half of the page (~width: 50%~), leaving a fifth on the left for the sidebar (~margin-left: 20%~) - this goes into the CSS. To have some breathing room next to the sidebar and the margin, there's 3.5em of padding on each side. Phone screens don't have the sidebar or the margin so there's just a bit of padding and none of the other things. Finally, normal text and paragraphs need to be justified. 
 #+BEGIN_EXPORT html
 <details>
 <summary>Content CSS</summary>
@@ -856,7 +859,7 @@ Content looks different on screens and phones though - on a computer screen it s
   @media (min-width: 48em) {
       .content {
           padding: 1em 3.5em 0 3.5em;
-          margin-left: 25%;
+          margin-left: 20%;
           width: 50%;
       }
   }
@@ -1087,7 +1090,7 @@ Before starting an article, we'd like some information about it - when it was pu
 #+END_EXPORT
 
 #+BEGIN_EXPORT html
-<label for="mn-disqus" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-disqus" class="margin-toggle"/>
+<label for="mn-comments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-disqus" class="margin-toggle"/>
 <span class="marginnote">
 #+END_EXPORT
 We use [[https://disqus.com/][Disqus]] to add a way for people to comment / vote on articles.
@@ -1316,7 +1319,7 @@ The Categories and Archives pages are pretty much the same as the tags page exce
 #+END_EXPORT
 
 ** Margin notes
-Well, we have a whole one-fourth of the page free on the right. Let's make some notes n the margin. This code is from [[https://edwardtufte.github.io/tufte-css/][tufte-css]] with minor modifications, sidenotes have a number attached and margin notes don't but both have a small arrow symbol pointing to the right. On phones you can click on the number / arrow and the note pops up. I kept the margin note label on normal screens too, just to have an indicator that there's something to read on the right.
+Well, we have space free on the right; let's make some notes in the margin. This code is from [[https://edwardtufte.github.io/tufte-css/][tufte-css]] with minor modifications, sidenotes have a number attached and margin notes don't but both have a small arrow symbol pointing to the right. On phones you can click on the number / arrow and the note pops up. I kept the margin note label on normal screens too, just to have an indicator that there's something to read on the right.
 #+BEGIN_EXPORT html
 <details>
 <summary>Margin CSS</summary>
@@ -1329,8 +1332,8 @@ Well, we have a whole one-fourth of the page free on the right. Let's make some 
   .marginnote {
       float: right;
       clear: right;
-      margin-right: -60%;
-      width: 50%;
+      margin-right: -70%;
+      width: 60%;
       margin-top: 0;
       margin-bottom: 0;
       font-size: 100%;

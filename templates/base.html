@@ -24,6 +24,9 @@
     {#Icons#}
     <link rel="shortcut icon" href="{{ SITEURL }}/images/favicon.ico"/>
 
+    {#Hypothesis#}
+    <script src="https://hypothes.is/embed.js" async></script>
+
 {% if GOOGLE_ANALYTICS %}
     <!-- Google Analytics -->
     <script>
@@ -47,8 +50,8 @@
 <body>
 <div id="layout" class="pure-g">
 
-{#This means the sidebar is full-width on mobile (u) and 1/4 on larger screens (md)#}
-<div class="sidebar pure-u-1 pure-u-md-1-4">
+{#This means the sidebar is full-width on mobile (u) and 1/5 on larger screens (md)#}
+<div class="sidebar pure-u-1 pure-u-md-1-5">
     <nav id="sidebar">
       <div class="sidebar-content">
         <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
@@ -90,8 +93,8 @@
     </small></div>
 </nav>
 
-{#The main text (+margin) is full width on mobile and 3/4th on computer screens#}
-       <div class="content pure-u-1 pure-u-md-3-4">
+{#The main text (+margin) is full width on mobile and 4/5th on computer screens#}
+       <div class="content pure-u-1 pure-u-md-4-5">
            <article>
                {% block content %}{% endblock %}
                <hr>
