@@ -550,7 +550,7 @@ hr {
 <label for="sn-analytics" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-analytics" class="margin-toggle"/>
 <span class="sidenote">
 #+END_EXPORT
-At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does but hey, analytics is going away soon anyway. *[UPDATE - 21 April 2020] - Got rid of Google Analytics for OutOfCheeseError! This is done by commenting out the ~GOOGLE_ANALYTICS~ variable in ~pelicanconf.py~. Next step, replacing Disqus with [[https://utteranc.es/][utterances]]. 
+At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does +but hey, analytics is going away soon anyway.+ *[UPDATE - 21 April 2020]* - Got rid of Google Analytics for OutOfCheeseError! This is done by commenting out the ~GOOGLE_ANALYTICS~ variable in pelicanconf.py. Next step, replacing Disqus with [[https://utteranc.es/][utterances]]. 
 #+CAPTION: Analytics in base.html
 #+BEGIN_EXPORT html
 <details>
@@ -689,6 +689,8 @@ First the sidebar: there's the site name and description, a list of links to dif
               <a href="/">Posts</a>
               &nbsp;&nbsp;|&nbsp;&nbsp;
               <a href="/pages/dailies">Dailies</a>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="/feeds/all.rss.xml">RSS</a>
               <br>
               <a href="/categories">Categories</a>
               &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -776,6 +778,8 @@ Phone screens won't have a sidebar but will have a header at the top that links 
           <a href="/">Posts</a>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <a href="/pages/dailies">Dailies</a>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="/feeds/all.rss.xml">RSS</a>
           <br>
           <a href="/categories">Categories</a>
           &nbsp;&nbsp;|&nbsp;&nbsp;
