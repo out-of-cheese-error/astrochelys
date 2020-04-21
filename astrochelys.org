@@ -13,7 +13,7 @@ So we decided that the blog could use an upgrade in terms of theming. The [[http
 
 Well I say wrote, but credit where credit's due - most of this is from all around the internet. We first found [[https://edwardtufte.github.io/tufte-css/][Tufte-CSS]] and really liked the margin notes idea, then came across [[http://cachestocaches.com/][Caches to Caches]] and rooted around Web Developer for some of its CSS, used [[https://codepen.io/cliftwalker/pen/XJaEXY][this codepen]] for some simple blockquotes, and [[https://purecss.io/][PureCSS]] to make dealing with different screen sizes easier. We even kept some of the HTML from [[https://github.com/Pelican-Elegant/elegant][pelican-elegant]].
 
-This post is going to be a bit ambitious in that it's a literate org-mode file which tangles out to the complete CSS and HTML template files of the actual theme, found at [[https://gitlab.com/outofcheeseerror/astrochelys][the Astrochelys GitLab repository]]. For readability, most of the code blocks are collapsed and can be expanded by clicking on the little black arrow, like the one below.
+This post is going to be a bit ambitious in that it's a literate org-mode file which tangles out to the complete CSS and HTML template files of the actual theme, found at [[https://github.com/out-of-cheese-error/astrochelys][the Astrochelys repository]]. For readability, most of the code blocks are collapsed and can be expanded by clicking on the little black arrow, like the one below.
 #+BEGIN_EXPORT html
 <details>
 <summary>Click me!</summary>
