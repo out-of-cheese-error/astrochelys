@@ -29,8 +29,8 @@ Astrochelys supports both [[https://analytics.google.com/analytics/web/][Google]
 *** Comments
 Currently, Astrochelys provides comments using [[https://disqus.com/][Disqus]], though we're planning to add support for [[https://utteranc.es/][utterances]]. Disqus support is controlled by the variable ~DISQUS_SITENAME~ in ~pelicanconf.py~.
 
-*** Colors
-- All website colors are defined in the first few lines of ~static/css/astrochelys.css~ - change these to try out different color combinations.
+*** Colors & Fonts
+- All website colors and fonts are defined in the first few lines of ~static/css/astrochelys.css~, change these for a different theme. 
 - Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like.
 
 *** Margin notes
