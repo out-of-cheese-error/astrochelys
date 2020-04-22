@@ -504,6 +504,16 @@ hr {
 }
 #+END_SRC
 
+** Footer
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:30px;
+}
+#+END_SRC
+
 * HTML Templates
 [[https://blog.getpelican.com/][Pelican]] has some nice documentation on [[https://docs.getpelican.com/en/stable/themes.html][creating a theme]] which basically says that you need up to 11 HTML template files, and you can use [[https://palletsprojects.com/p/jinja/][Jinja]] in them@@html:<label for="sn-jinja" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-jinja" class="margin-toggle"/><span class="sidenote">@@Jinja is a templating system that lets you, among other things, use for loops and variables and extend other HTML files.@@html: </span>@@. But you can also get away with just writing a ~base.html~ file and letting it use the default simple theme for the rest. We compromised and have 6 templates all of which extend ~base.html~. This section has just the ~<head>~ elements of all the templates.
 *** Base.html 
@@ -722,6 +732,7 @@ First the sidebar: there's the site name and description, a list of links to dif
         <div class="sidebar-content">
           <div class="toc">{% block toc %}{% endblock %}</div>
         </div>
+        <div id="footer"><small>Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="https://github.com/out-of-cheese-error/astrochelys">Astrochelys</a></small></div>
       </nav>
   </div>
 #+END_SRC
