@@ -14,5 +14,27 @@ This is the theme we use for [[https://out-of-cheese-error.netlify.com/][OutOfCh
 #+attr_html: :width 500px
 [[./screenshots/phone.png]]
 
+** Basic Usage 
+1. Start a blog using [[https://docs.getpelican.com/en/stable/quickstart.html][Pelican]]
+2. Clone this repository alongside your ~pelicanconf.py~
+3. Add "THEME = "./astrochelys" to ~pelicanconf.py~
+4. Add [[https://github.com/ingwinlu/pelican-toc][pelican-toc]] to your PLUGINS. This can be customized as described [[https://github.com/ingwinlu/pelican-toc#settings][here]].
+
+** Customizations
+*** Analytics
+Astrochelys supports both [[https://analytics.google.com/analytics/web/][Google]] and [[https://usefathom.com/][Fathom]] analytics. 
+- To use Google Analytics, set the ~GOOGLE_ANALYTICS~ variable in ~pelicanconf.py~ to your Analytics ID.
+- To use Fathom, set the ~FATHOM_SITE_ID~ variable to the site ID given by Fathom, and the ~FATHOM_ANALYTICS~ variable to the server address performing the tracking (We use [[https://github.com/usefathom/fathom][Fathom Lite]] hosted on [[https://www.heroku.com/][Heroku]] for this, following the instructions [[https://gist.github.com/gmolveau/78f88af3f5951ba6e093f93a07caa302][here]].)
+
+*** Comments
+Currently, Astrochelys provides comments using [[https://disqus.com/][Disqus]], though we're planning to add support for [[https://utteranc.es/][utterances]]. Disqus support is controlled by the variable ~DISQUS_SITENAME~ in ~pelicanconf.py~.
+
+*** Colors
+- All website colors are defined in the first few lines of ~static/css/astrochelys.css~ - change these to try out different color combinations.
+- Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like.
+
+*** Margin notes
+See [[https://out-of-cheese-error.netlify.app/astrochelys#org6d6ec31][here]] on how to add margin notes to your articles.
+
 ** More
 Every line of code in excruciating detail over at [[https://out-of-cheese-error.netlify.com/astrochelys][this post]]. 
