@@ -1,5 +1,5 @@
 * The Astrochelys Pelican Theme
-This is the theme we use for [[https://out-of-cheese-error.netlify.com/][OutOfCheeseError]]
+This is the theme we use for [[https://out-of-cheese-error.netlify.app/][OutOfCheeseError]]
 ** Some screenshots
 *** Index page
 #+attr_html: :width 500px
@@ -17,7 +17,7 @@ This is the theme we use for [[https://out-of-cheese-error.netlify.com/][OutOfCh
 ** Basic Usage 
 1. Start a blog using [[https://docs.getpelican.com/en/stable/quickstart.html][Pelican]]
 2. Clone this repository alongside your ~pelicanconf.py~
-3. Add "THEME = "./astrochelys" to ~pelicanconf.py~
+3. Add THEME = "./astrochelys" to ~pelicanconf.py~
 4. Add [[https://github.com/ingwinlu/pelican-toc][pelican-toc]] to your PLUGINS. This can be customized as described [[https://github.com/ingwinlu/pelican-toc#settings][here]].
 
 ** Customizations
@@ -37,4 +37,4 @@ Currently, Astrochelys provides comments using [[https://disqus.com/][Disqus]], 
 See [[https://out-of-cheese-error.netlify.app/astrochelys#org6d6ec31][here]] on how to add margin notes to your articles.
 
 ** More
-Every line of code in excruciating detail over at [[https://out-of-cheese-error.netlify.com/astrochelys][this post]]. 
+Every line of code in excruciating detail over at [[https://out-of-cheese-error.netlify.app/astrochelys][this post]]. 
