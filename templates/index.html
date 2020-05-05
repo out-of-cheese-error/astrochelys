@@ -8,10 +8,11 @@
 <div class="uppercase">Recent Posts</div>
 <hr>
 <div>
+<ul>
 {% for article in articles_page.object_list %}
-<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
-<br>
+<li><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></li>
 {% endfor %}
+</ul>
 </div>
 {% endblock toc %}
 
