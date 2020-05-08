@@ -925,7 +925,7 @@ Content looks different on screens and phones though - on a computer screen it s
 
 * Text
 ** Table of Contents
-The table of contents (~block toc~) in the sidebar changes per page, so you define it differently in each HTML template. The one in index.html just lists the titles of all the posts (Not ideal, need to change this to a fixed number of recent posts). The one in article.html and page.html use a Pelican plugin called [[https://github.com/ingwinlu/pelican-toc][pelican-toc]] which auto-generates a table of contents for a page based on it's h1, h2, h3 etc. tags and stores it in ~article.toc~. @@html:<label for="sn-toc" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-toc" class="margin-toggle"/><span class="sidenote">@@You can control what depth of headers to consider in your ~pelicanconf.py~ - we have it set to h1, h2, and h3@@html: </span>@@
+The table of contents (~block toc~) in the sidebar changes per page, so you define it differently in each HTML template. The one in index.html just lists the titles of the five most recent posts. The one in article.html and page.html use a Pelican plugin called [[https://github.com/ingwinlu/pelican-toc][pelican-toc]] which auto-generates a table of contents for a page based on it's h1, h2, h3 etc. tags and stores it in ~article.toc~. @@html:<label for="sn-toc" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-toc" class="margin-toggle"/><span class="sidenote">@@You can control what depth of headers to consider in your ~pelicanconf.py~ - we have it set to h1, h2, and h3@@html: </span>@@
 #+BEGIN_EXPORT html
 <details>
 <summary>Table of Contents (TOC) in index.html</summary>
@@ -936,10 +936,14 @@ The table of contents (~block toc~) in the sidebar changes per page, so you defi
   <div class="uppercase">Recent Posts</div>
   <hr>
   <div>
-  <ul>
-  {% for article in articles_page.object_list %}
-  <li><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></li>
-  {% endfor %}
+    <ul>
+      {% for article in articles_page.object_list %}
+      {% if loop.index <= 5 %}
+        <li>
+          <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+        </li>
+      {% endif %}
+      {% endfor %}
   </ul>
   </div>
   {% endblock toc %}
