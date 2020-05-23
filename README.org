@@ -11,7 +11,7 @@ This is the theme we use for [[https://out-of-cheese-error.netlify.app/][OutOfCh
 #+attr_html: :width 500px
 [[./screenshots/tags.png]]
 *** On a smaller screen
-#+attr_html: :width 200px
+#+attr_html: :width 100px
 [[./screenshots/phone.png]]
 
 ** Basic Usage 
