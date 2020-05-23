@@ -562,7 +562,7 @@ hr {
 <label for="sn-analytics" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-analytics" class="margin-toggle"/>
 <span class="sidenote">
 #+END_EXPORT
-At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does +but hey, analytics is going away soon anyway.+ *[UPDATE - 21 April 2020]* - Got rid of Google Analytics for OutOfCheeseError and switched to the simpler and more privacy-focused [[https://github.com/usefathom/fathom][Fathom (Lite)]] instead! Next step, replacing Disqus with [[https://utteranc.es/][utterances]]. 
+At the end of base.html's <head> is also where you add in things like analytics. No idea what this code does +but hey, analytics is going away soon anyway.+ *[UPDATE - 21 April 2020]* - Got rid of Google Analytics for OutOfCheeseError and switched to the simpler and more privacy-focused [[https://github.com/usefathom/fathom][Fathom (Lite)]] instead! 
 #+CAPTION: Analytics in base.html
 #+BEGIN_EXPORT html
 <details>
@@ -1135,6 +1135,12 @@ Before starting an article, we'd like some information about it - when it was pu
         <div class="article-content">
           {{ article.content }}
         </div>
+        <hr>
+        <div class="condensed-font">
+        <br>
+        For comments, click the arrow at the top right corner.
+        <br><br>
+        </div>
     </section>
 #+END_SRC
 #+BEGIN_EXPORT html
@@ -1145,7 +1151,7 @@ Before starting an article, we'd like some information about it - when it was pu
 <label for="mn-comments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-disqus" class="margin-toggle"/>
 <span class="marginnote">
 #+END_EXPORT
-We use [[https://disqus.com/][Disqus]] to add a way for people to comment / vote on articles.
+We +use+ used to use [[https://disqus.com/][Disqus]] to add a way for people to comment / vote on articles. UPDATE: We've switched entirely to using [[https://hypothes.is/][Hypothesis]] for comments, it's also nicer because you can attach a comment to a certain line / paragraph instead of having it all the way at the bottom of the page. We used [[https://github.com/jcouyang/disqus-to-hypothesis][this neat utility]] to migrate from Disqus to Hypothesis. The migration is not perfect but we didn't have a lot of comments anyway. Leaving the Disqus code in here in case others want to use it though. 
 #+BEGIN_EXPORT html
 <details>
 <summary>Disqus support in article.html</summary>
