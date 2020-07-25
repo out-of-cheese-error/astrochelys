@@ -6,7 +6,7 @@
 
 {% block toc %}
 <div class="uppercase">Tags</div>
-<hr>
+<br>
 <div>
     {% for tag, articles in tags|sort %}
     <a href="#{{ tag.slug }}-ref">{{ tag }}</a>&nbsp;.&nbsp;

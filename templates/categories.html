@@ -6,7 +6,7 @@
 
 {% block toc %}
 <div class="uppercase">Categories</div>
-<hr>
+<br>
 <div>
 {% for category, articles in categories %}
 <a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('categories') }}#{{ category }}-ref">{{ category }}</a><br>

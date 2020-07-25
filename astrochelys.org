@@ -499,7 +499,7 @@ These are the thin purple lines under the title in the sidebar and, if you're on
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 hr {
  border:0;
- border-top:1px solid var(--highlight-color-1);
+ border-top:0.2em solid var(--highlight-color-1);
  margin:0.4em 0
 }
 #+END_SRC
@@ -733,7 +733,7 @@ First the sidebar: there's the site name and description, a list of links to dif
             </small>
           </div>
         </div>
-        <hr>
+        <br>
         <div class="sidebar-content">
           <div class="toc">{% block toc %}{% endblock %}</div>
         </div>
@@ -745,7 +745,7 @@ First the sidebar: there's the site name and description, a list of links to dif
 </details>
 #+END_EXPORT
 
-The associated CSS makes the sidebar the same color as code block backgrounds (darker-color) and uses the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text. By setting the font-size to a relative percentage like 90% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
+The associated CSS makes the sidebar use the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text, and make them right-justified so it sits flush against the post text. By setting the font-size to a relative percentage like 90% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
 #+BEGIN_EXPORT html
 <details>
 <summary>Sidebar CSS</summary>
@@ -753,7 +753,7 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
 #+CAPTION: Sidebar CSS
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
   .sidebar {
-      background: var(--darker-color);
+      background: var(--lightest-color);
       color: var(--lighter-color);
       font-family: var(--condensed-font), sans-serif;
   }
@@ -773,23 +773,22 @@ The associated CSS makes the sidebar the same color as code block backgrounds (d
   }
   .sidebar li {
       line-height: 1.5em;
-      border-left: 1px;
-      padding: 0 4px 0 4px;
-      margin: 0 0 4px -4px;
+      margin: 0 0 0.1em 0;
   }
   .sidebar-content {
       margin: 5%;
       width: 90%;
-      padding: 1.5em;
-      text-align: left;
+      padding-left: 1.5em;
+      text-align: right;
       font-size: 1em;
+      margin-top: 20%;
   }
   .sidebar-header {
       margin: 5%;
       width: 90%;
       padding: 0.5em;
       text-align: center;
-      font-size: 1em;
+      font-size: 1.1em;
   }
   .sidebar ul {
       list-style-type:none;
@@ -915,7 +914,7 @@ Content looks different on screens and phones though - on a computer screen it s
   }
   @media screen and (max-width:48em) {
       .content {
-          padding: 2em 1em 0 1em;
+          padding: 1em 2em 0 2em;
       }
   }
   .content p {
@@ -937,7 +936,7 @@ The table of contents (~block toc~) in the sidebar changes per page, so you defi
 #+BEGIN_SRC html :tangle templates/index.html
   {% block toc %}
   <div class="uppercase">Recent Posts</div>
-  <hr>
+  <br>
   <div>
     <ul>
       {% for article in articles_page.object_list %}
@@ -964,7 +963,7 @@ The table of contents (~block toc~) in the sidebar changes per page, so you defi
 {% block toc %}
 {% if article.toc %}
 <div class="uppercase">{{article.title}}</div>
-<hr>
+<br>
 <div class="col-lg-3 hidden-xs hidden-sm">
     {{article.toc}}
 </div>
@@ -984,7 +983,7 @@ The table of contents (~block toc~) in the sidebar changes per page, so you defi
 {% block toc %}
 {% if page.toc %}
 <div class="uppercase">{{page.title}}</div>
-<hr>
+<br>
 <div class="col-lg-3 hidden-xs hidden-sm">
     {{page.toc}}
 </div>
@@ -1004,7 +1003,7 @@ For the Tags page we list all tags (in alphabetical order) separated by a "." (s
 #+BEGIN_SRC html :tangle templates/tags.html
 {% block toc %}
 <div class="uppercase">Tags</div>
-<hr>
+<br>
 <div>
     {% for tag, articles in tags|sort %}
     <a href="#{{ tag.slug }}-ref">{{ tag }}</a>&nbsp;.&nbsp;
@@ -1024,7 +1023,7 @@ For the Tags page we list all tags (in alphabetical order) separated by a "." (s
 #+BEGIN_SRC html :tangle templates/categories.html
 {% block toc %}
 <div class="uppercase">Categories</div>
-<hr>
+<br>
 <div>
 {% for category, articles in categories %}
 <a href="{{ SITEURL }}/{{ CATEGORIES_URL|default('categories') }}#{{ category }}-ref">{{ category }}</a><br>

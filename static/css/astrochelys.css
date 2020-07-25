@@ -126,7 +126,7 @@ blockquote::after{
 
 hr {
  border:0;
- border-top:1px solid var(--highlight-color-1);
+ border-top:0.2em solid var(--highlight-color-1);
  margin:0.4em 0
 }
 
@@ -149,7 +149,7 @@ hr {
 }
 
 .sidebar {
-    background: var(--darker-color);
+    background: var(--lightest-color);
     color: var(--lighter-color);
     font-family: var(--condensed-font), sans-serif;
 }
@@ -169,23 +169,22 @@ hr {
 }
 .sidebar li {
     line-height: 1.5em;
-    border-left: 1px;
-    padding: 0 4px 0 4px;
-    margin: 0 0 4px -4px;
+    margin: 0 0 0.1em 0;
 }
 .sidebar-content {
     margin: 5%;
     width: 90%;
-    padding: 1.5em;
-    text-align: left;
+    padding-left: 1.5em;
+    text-align: right;
     font-size: 1em;
+    margin-top: 20%;
 }
 .sidebar-header {
     margin: 5%;
     width: 90%;
     padding: 0.5em;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 .sidebar ul {
     list-style-type:none;
@@ -236,7 +235,7 @@ hr {
 }
 @media screen and (max-width:48em) {
     .content {
-        padding: 2em 1em 0 1em;
+        padding: 1em 2em 0 2em;
     }
 }
 .content p {
