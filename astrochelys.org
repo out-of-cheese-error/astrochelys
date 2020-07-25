@@ -315,7 +315,7 @@ We need one for code (fixed-font), one for long-form text (variable-font), and o
 #+BEGIN_SRC css  :tangle "static/css/astrochelys.css"
 :root {
   --fixed-font: "Fira Code";
-  --variable-font: "Raleway";
+  --variable-font: "Cantarell";
   --condensed-font: "Fira Sans Condensed";
   --sitename-font: "VT323";
 }
@@ -532,6 +532,9 @@ hr {
       <meta charset="UTF-8">
       <title>{% block title %}{% endblock %}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% if GOOGLE_SEARCH_CONSOLE %}
+      <meta name="google-site-verification" content="{{GOOGLE_SEARCH_CONSOLE}}"/>
+      {% endif %}
       {% block meta %}{% endblock %}
       {#PureCSS#}
       <!--[if lte IE 8]>
@@ -542,7 +545,7 @@ hr {
       <!--<![endif]-->
 
       {#Fonts#}
-      <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway|VT323&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Cantarell|VT323&display=swap" rel="stylesheet">
 
       {#Stylesheets#}
       {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}

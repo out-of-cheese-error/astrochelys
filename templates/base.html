@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if GOOGLE_SEARCH_CONSOLE %}
+    <meta name="google-site-verification" content="{{GOOGLE_SEARCH_CONSOLE}}"/>
+    {% endif %}
     {% block meta %}{% endblock %}
     {#PureCSS#}
     <!--[if lte IE 8]>
@@ -14,7 +17,7 @@
     <!--<![endif]-->
 
     {#Fonts#}
-    <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Raleway|VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Cantarell|VT323&display=swap" rel="stylesheet">
 
     {#Stylesheets#}
     {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}
