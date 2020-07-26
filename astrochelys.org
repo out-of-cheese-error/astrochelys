@@ -857,12 +857,12 @@ The CSS turns off the phone header for larger screens, turns off the sidebar for
       .phone-header {
           display: block;
           text-align: center;
-          background: var(--darker-color);
+          background: var(--lightest-color);
           color: var(--lighter-color);
           min-height: 3.5em;
           position: relative;
           padding: 1em;
-          font-size: 1em;
+          font-size: 1.1em;
           font-family: var(--condensed-font), sans-serif;
       }
       .phone-header a {
@@ -1039,7 +1039,7 @@ For the Tags page we list all tags (in alphabetical order) separated by a "." (s
 The Index page gives the titles, subtitles, and summaries of all our posts.
 #+BEGIN_EXPORT html
 <details>
-<summary>Table of Contents (TOC) in index.html</summary>
+<summary>Content in index.html</summary>
 #+END_EXPORT
 #+CAPTION: Content in index.html
 #+BEGIN_SRC html :tangle templates/index.html
@@ -1085,7 +1085,8 @@ Sometimes post titles get messed up on smaller screens so this CSS just let's it
         }
     }
 #+END_SRC
-Before starting an article, we'd like some information about it - when it was published, what tags are associated with it, which category it belongs to etc. This is the article information - it's stored in a margin note and it's not visible on phones (where it made more sense to concentrate on the content). Then you have the title (and subtitle), followed by the actual content.
+Before starting an article, we'd like some information about it - when it was published 
+@@html:<label for="sn-date" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-date" class="margin-toggle"/><span class="sidenote">@@You can change how the date is displayed using the ~DEFAULT_DATE_FORMAT~ variable in ~pelicanconf.py~.@@html: </span>@@, what tags are associated with it, which category it belongs to etc. This is the article information - it's stored in a margin note and it's not visible on phones (where it made more sense to concentrate on the content). Then you have the title (and subtitle), followed by the actual content.
 #+BEGIN_EXPORT html
 <details>
 <summary>Content in article.html</summary>
@@ -1150,7 +1151,7 @@ Before starting an article, we'd like some information about it - when it was pu
 #+END_EXPORT
 
 #+BEGIN_EXPORT html
-<label for="mn-comments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-disqus" class="margin-toggle"/>
+<label for="mn-comments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-comments" class="margin-toggle"/>
 <span class="marginnote">
 #+END_EXPORT
 We +use+ used to use [[https://disqus.com/][Disqus]] to add a way for people to comment / vote on articles. UPDATE: We've switched entirely to using [[https://hypothes.is/][Hypothesis]] for comments, it's also nicer because you can attach a comment to a certain line / paragraph instead of having it all the way at the bottom of the page. We used [[https://github.com/jcouyang/disqus-to-hypothesis][this neat utility]] to migrate from Disqus to Hypothesis. The migration is not perfect but we didn't have a lot of comments anyway. Leaving the Disqus code in here in case others want to use it though. 
@@ -1400,6 +1401,9 @@ Well, we have space free on the right; let's make some notes in the margin. This
       font-family: var(--variable-font), sans-serif;
       vertical-align: baseline;
       position: relative; 
+  }
+  .margin-toggle {
+        color: var(--highlight-color-2);
   }
   .sidenote-number {
       counter-increment: sidenote-counter; 

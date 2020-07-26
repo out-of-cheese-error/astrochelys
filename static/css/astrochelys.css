@@ -212,12 +212,12 @@ hr {
     .phone-header {
         display: block;
         text-align: center;
-        background: var(--darker-color);
+        background: var(--lightest-color);
         color: var(--lighter-color);
         min-height: 3.5em;
         position: relative;
         padding: 1em;
-        font-size: 1em;
+        font-size: 1.1em;
         font-family: var(--condensed-font), sans-serif;
     }
     .phone-header a {
@@ -295,6 +295,9 @@ hr {
     font-family: var(--variable-font), sans-serif;
     vertical-align: baseline;
     position: relative; 
+}
+.margin-toggle {
+      color: var(--highlight-color-2);
 }
 .sidenote-number {
     counter-increment: sidenote-counter; 
