@@ -29,6 +29,10 @@ This post is going to be a bit ambitious in that it's a literate org-mode file w
   html_dir = Path.cwd() / "templates"
   if not html_dir.exists():
       html_dir.mkdir()
+  snippets_dir = html_dir / "snippets"
+  if not (snippets_dir).exists():
+      snippets_dir.mkdir()
+
 #+END_SRC 
 #+BEGIN_EXPORT html
 </details>
@@ -670,7 +674,7 @@ This page lists posts grouped by tag
 #+END_SRC
 
 *** Archives.html
-And finally, this page lists posts grouped by year
+This page lists posts grouped by year
 #+BEGIN_SRC html :tangle "templates/archives.html"
 {% extends "base.html" %}
 {% block title %}Archives{% endblock %}
@@ -685,6 +689,7 @@ The layout is something all pages will have in common so we set it up in base.ht
     <body>
     <div id="layout" class="pure-g">
 #+END_SRC
+
 #+BEGIN_EXPORT html
 <details>
 <summary>And, in astrochelys.css, some things we don't really understand.</summary>
@@ -703,36 +708,44 @@ The layout is something all pages will have in common so we set it up in base.ht
 </details>
 #+END_EXPORT
 
+
+** Header
+This is just an HTML snippet with the site name, description, navigation links, and an [[Search][optional search box]]. We'll use this below in the sidebar for desktops, and in the phone header for smaller screens.
+#+BEGIN_SRC html :tangle "templates/snippets/header.html"
+  <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
+  <div><small>{{ BIO_TEXT }}</small></div>
+  <div>
+    <small>
+      <a href="/">Posts</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="/pages/dailies">Dailies</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="/feeds/all.rss.xml">RSS</a>
+      <br>
+      <a href="/categories">Categories</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="/tags">Tags</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="/archives">Archives</a>
+    </small>
+  </div>
+  <br>
+  {% if ADD_SEARCH_BOX %}
+    {% include "snippets/search.html" %}
+  {% endif %}
+ 
+#+END_SRC
+
 ** Sidebar
-First the sidebar: there's the site name and description, a list of links to different pages, and a section for the table of contents (TOC). The TOC changes per page though, so in base we put in a jinja block that we can fill in later in the other templates.
-#+BEGIN_EXPORT html
-<details>
-<summary>Sidebar in base.html</summary>
-#+END_EXPORT
-#+CAPTION: Sidebar in base.html
+We'll define the sidebar in ~base.html~ to have the header and a section for the table of contents (TOC). This is a jinja block that we can fill in later in the other templates.
 #+BEGIN_SRC html :tangle "templates/base.html"
   {#This means the sidebar is full-width on mobile (u) and a bit less than 1/4 on larger screens (md)#}
   <div class="sidebar pure-u-1 pure-u-md-5-24">
       <nav id="sidebar">
         <div class="sidebar-header">
-          <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
-          <div><small>{{ BIO_TEXT }}</small></div>
-          <div id="sidebar-links">
-            <small>
-              <a href="/">Posts</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="/pages/dailies">Dailies</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="/feeds/all.rss.xml">RSS</a>
-              <br>
-              <a href="/categories">Categories</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="/tags">Tags</a>
-              &nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="/archives">Archives</a>
-            </small>
-          </div>
+          {% include "snippets/header.html" %}
         </div>
+        <br>
         <br>
         <div class="sidebar-content">
           <div class="toc">{% block toc %}{% endblock %}</div>
@@ -741,9 +754,6 @@ First the sidebar: there's the site name and description, a list of links to dif
       </nav>
   </div>
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 The associated CSS makes the sidebar use the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text, and make them right-justified so it sits flush against the post text. By setting the font-size to a relative percentage like 90% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
 #+BEGIN_EXPORT html
@@ -810,33 +820,11 @@ The associated CSS makes the sidebar use the condensed font so that longer title
 
 ** Phone Header
 Phone screens won't have a sidebar but will have a header at the top that links to the other pages. This stays the same for all pages, so we only have to talk about it in the base.
-#+BEGIN_EXPORT html
-<details>
-<summary>Phone header in base.html</summary>
-#+END_EXPORT
-#+CAPTION: Phone header in base.html
 #+BEGIN_SRC html :tangle templates/base.html
   <nav class="phone-header">
-    <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
-    <div><small>{{ BIO_TEXT }}</small></div>
-    <div><small>
-          <a href="/">Posts</a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="/pages/dailies">Dailies</a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="/feeds/all.rss.xml">RSS</a>
-          <br>
-          <a href="/categories">Categories</a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="/tags">Tags</a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="/archives">Archives</a>
-      </small></div>
+    {% include "snippets/header.html" %}
   </nav>
 #+END_SRC
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 The CSS turns off the phone header for larger screens, turns off the sidebar for phones, and styles the header pretty similar to the sidebar.
 #+BEGIN_EXPORT html
@@ -1495,5 +1483,210 @@ your note here
 your note here
 </span>
 #+END_SRC
+* Search 
+We decided to use [[https://github.com/tinysearch/tinysearch][tinysearch]] to add a tiny search box with full-text search. It's a bit on the simple side since there's no fuzzy search or keyword highlighting, but it's snappy and doesn't take up a lot of space which is all we can ask for. To add this to a website you first need to generate a list of JSON objects that hold the title, url and content of each post. This is pretty easy to do with a pelican template, which we save in ~templates/json.html~:
+#+BEGIN_SRC html :tangle "templates/json.html"
+[
+{%- for article in articles -%}
+{% if article.status != "draft" %}
+{
+"title": {{ article.title | striptags | tojson | safe }},
+"url": {{ article.url | tojson | safe }},
+"body": {{ article.content | striptags | tojson | safe }}
+}{% if not loop.last %},{% endif %}
+{% endif %}
+{%- endfor -%}
+]
+#+END_SRC
+
+To make sure pelican makes this index on every build, add a ~json.md~ file to the ~content/pages~ folder with
+#+BEGIN_SRC md
+Title: JSON
+Template: json
+Slug: json
+#+END_SRC
+This makes an ~output/pages/json.html~ file on running ~pelican content~ that uses the template we made above to make a list of JSON objects, one for each article.
+
+We'll use ~tinysearch~ (after following their installation instructions) to index this JSON file, followed by ~terser~ to minify the resulting JS. To make this whole pipeline single click, we added the commands to the end of pelican's Makefile:
+
+#+BEGIN_SRC makefile
+.PHONY: index
+index: content ## Build the search index with tinysearch
+	tinysearch --optimize --path $(OUTPUTDIR) $(OUTPUTDIR)/pages/json.html
+.PHONY: minify
+minify: ## Compress JavaScript assets
+	terser --compress --mangle --output $(OUTPUTDIR)/search_min.js -- $(OUTPUTDIR)/tinysearch_engine.js
+
+.PHONY: build 
+build: html index minify ## Build static site and search index, minify JS
+#+END_SRC
+
+Meaning we can just call ~make build~ after adding a new post (instead of ~pelican content~).
+
+Alright so that indexes our articles and makes the required tinysearch files; now let's add the search box! We've encapsulated this into another template file so that it's plug-and-play. This is copied as-is from tinysearch's creator [[https://github.com/mre/mre.github.io][Matthias Endler's blog source]].
+#+BEGIN_EXPORT html
+  <details>
+  <summary>templates/snippets/search.html</summary>
+  #+END_EXPORT
+#+BEGIN_SRC html :tangle "templates/snippets/search.html"
+<script type="module"> 
+import { search, default as init } from './search_min.js';
+    window.search = search;
+
+async function lazyLoad() {
+    await init('./tinysearch_engine_bg.wasm');
+}
+
+var loaded = false;
+
+function autocomplete(inp) {
+    var currentFocus;
+
+    inp.addEventListener("click", function (e) {
+        // There's probably a better way to do lazy loading.
+        // Then again, I'm not a JavaScript developer ¯\_(ツ)_/¯
+        if (!loaded) {
+            lazyLoad();
+            loaded = true;
+        }
+    });
+
+    inp.addEventListener("input", function (e) {
+        var a, b, i, val = this.value;
+
+        /*close any already open lists of autocompleted values*/
+        closeAllLists();
+        if (!val) {
+            return false;
+        }
+        currentFocus = -1;
+
+        /* Create a DIV element that will contain the items (values):*/
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+
+        /* Append the DIV element as a child of the autocomplete container:*/
+        this.parentNode.appendChild(a);
+
+        let arr = search(val, 5);
+
+        for (i = 0; i < arr.length; i++) {
+            let elem = arr[i];
+
+            b = document.createElement("DIV");
+            b.innerHTML = elem[0];
+
+            b.addEventListener("click", function (e) {
+                window.location.href = `${elem[1]}?q=${encodeURIComponent(val)}`;
+            });
+            a.appendChild(b);
+        }
+    });
+
+    inp.addEventListener("keydown", function (e) {
+        var x = document.getElementById(this.id + "autocomplete-list");
+        if (x) x = x.getElementsByTagName("div");
+        if (e.keyCode == 40) {
+            /* If the arrow DOWN key is pressed,
+            increase the currentFocus variable:*/
+            currentFocus++;
+            /* and and make the current item more visible:*/
+            addActive(x);
+        } else if (e.keyCode == 38) { //up
+            /* If the arrow UP key is pressed,
+            decrease the currentFocus variable:*/
+            currentFocus--;
+            /* and and make the current item more visible:*/
+            addActive(x);
+        } else if (e.keyCode == 13) {
+            /* If the ENTER key is pressed, prevent the form from being submitted,*/
+            e.preventDefault();
+            if (currentFocus > -1) {
+                /* and simulate a click on the "active" item:*/
+                if (x) x[currentFocus].click();
+            }
+        }
+    });
+
+    function addActive(x) {
+        /* A function to classify an item as "active":*/
+        if (!x) return false;
+        /* Start by removing the "active" class on all items:*/
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        /* Add class "autocomplete-active":*/
+        x[currentFocus].classList.add("autocomplete-active");
+    }
+
+    function removeActive(x) {
+        /* A function to remove the "active" class from all autocomplete items:*/
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+        }
+    }
+
+    function closeAllLists(elmnt) {
+        /* Close all autocomplete lists in the document,
+        except the one passed as an argument:*/
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+            }
+        }
+    }
+    document.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
+}
+autocomplete(document.getElementById("tinysearch"));
+</script>
+
+<form id="searchbox" autocomplete="off">
+    <div class="autocomplete">
+        <input id="tinysearch" type="text" aria-label="Search articles" placeholder="&#x1F50D; Search articles">
+    </div>
+</form>
+#+END_SRC
+#+BEGIN_EXPORT html
+  </details>
+  #+END_EXPORT
+
+
+And finally, some CSS to make the search box and results pop-up look nice:
+#+BEGIN_SRC css :tangle "static/css/astrochelys.css"
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.autocomplete-items {
+  position: absolute;
+  font-size: 0.7em;
+  width: 100%;
+  color: var(--lightest-color);
+}
+
+.autocomplete-items div {
+  cursor: pointer;
+  background-color: var(--lighter-color);
+  border: 0.5px dotted var(--darker-color);
+}
+
+.autocomplete-items div:hover,
+.autocomplete-active {
+ font-weight: bold;
+}
+#+END_SRC
+
+Great! With all this set up, adding a search box to a page is as simple as adding ~{% include "snippets/search.html" %}~
+wherever we want it to be; you may have noticed it already in the [[Header][Header]].
+
 * Next steps
 Nothing really, we're pretty happy with this theme for now. The nice thing is, if we get bored of the color scheme, we just need to pick a new (pygmentizable) syntax highlighting theme and change the colors accordingly. There's no social media stuff for now, I guess we could at least add a GitHub link in the sidebar. Also some vector art could be nice, [[https://en.wikipedia.org/wiki/Radiated_tortoise][/Astrochelys radiata/]] perhaps. 

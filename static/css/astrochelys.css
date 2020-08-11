@@ -368,3 +368,30 @@ label.sidenote-number {
   font-size:80%;
  }
 }
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.autocomplete-items {
+  position: absolute;
+  font-size: 0.7em;
+  width: 100%;
+  color: var(--lightest-color);
+}
+
+.autocomplete-items div {
+  cursor: pointer;
+  background-color: var(--lighter-color);
+  border: 0.5px dotted var(--darker-color);
+}
+
+.autocomplete-items div:hover,
+.autocomplete-active {
+ font-weight: bold;
+}

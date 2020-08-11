@@ -75,24 +75,9 @@
 <div class="sidebar pure-u-1 pure-u-md-5-24">
     <nav id="sidebar">
       <div class="sidebar-header">
-        <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
-        <div><small>{{ BIO_TEXT }}</small></div>
-        <div id="sidebar-links">
-          <small>
-            <a href="/">Posts</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="/pages/dailies">Dailies</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="/feeds/all.rss.xml">RSS</a>
-            <br>
-            <a href="/categories">Categories</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="/tags">Tags</a>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a href="/archives">Archives</a>
-          </small>
-        </div>
+        {% include "snippets/header.html" %}
       </div>
+      <br>
       <br>
       <div class="sidebar-content">
         <div class="toc">{% block toc %}{% endblock %}</div>
@@ -102,21 +87,7 @@
 </div>
 
 <nav class="phone-header">
-  <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
-  <div><small>{{ BIO_TEXT }}</small></div>
-  <div><small>
-        <a href="/">Posts</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="/pages/dailies">Dailies</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="/feeds/all.rss.xml">RSS</a>
-        <br>
-        <a href="/categories">Categories</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="/tags">Tags</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="/archives">Archives</a>
-    </small></div>
+  {% include "snippets/header.html" %}
 </nav>
 
 {#The main text (+margin) is full width on mobile and 4/5th on computer screens#}

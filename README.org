@@ -15,6 +15,30 @@ Astrochelys supports both [[https://analytics.google.com/analytics/web/][Google]
 *** Comments
 Astrochelys provides comments using either [[https://hypothes.is/][Hypothesis]] or [[https://disqus.com/][Disqus]] (or both). Disqus support is controlled by the variable ~DISQUS_SITENAME~ in ~pelicanconf.py~. Hypothesis is embedded in the header and appears on the right side of the page.
 
+*** Search
+Astrochelys supports search via [[https://github.com/tinysearch/tinysearch][tinysearch]] and some JS code taken from [[https://github.com/mre/mre.github.io][Matthias Endler's blog source]]. To set this up:
++ Install tinysearch and terser as described in the tinysearch repository 
++ Add a ~json.md~ file in ~your_pelican_directory/content/pages~ with
+#+BEGIN_SRC md
+Title: JSON
+Template: json
+Slug: json
+#+END_SRC
++ Set the ~ADD_SEARCH_BOX~ variable to ~True~ in ~pelicanconf.py~ 
++ Finally, add the following to your pelican ~Makefile~:
+#+BEGIN_SRC makefile
+  .PHONY: index
+  index: content ## Build the search index with tinysearch
+          tinysearch --optimize --path $(OUTPUTDIR) $(OUTPUTDIR)/pages/json.html
+  .PHONY: minify
+  minify: ## Compress JavaScript assets
+          terser --compress --mangle --output $(OUTPUTDIR)/search_min.js -- $(OUTPUTDIR)/tinysearch_engine.js
+
+  .PHONY: build
+  build: html index minify ## Build static site and search index, minify JS
+#+END_SRC
+and instead of running ~pelican content~ to build your output files run ~make build~ instead.
+
 *** Colors & Fonts
 - All website colors and fonts are defined in the first few lines of ~static/css/astrochelys.css~, change these for a different theme. 
 - Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like.

@@ -1,0 +1,11 @@
+[
+{%- for article in articles -%}
+{% if article.status != "draft" %}
+{
+"title": {{ article.title | striptags | tojson | safe }},
+"url": {{ article.url | tojson | safe }},
+"body": {{ article.content | striptags | tojson | safe }}
+}{% if not loop.last %},{% endif %}
+{% endif %}
+{%- endfor -%}
+]

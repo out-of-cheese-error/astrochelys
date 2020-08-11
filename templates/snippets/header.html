@@ -1,0 +1,21 @@
+<div class="sitename"><a href="/">{{ SITENAME }}</a></div>
+<div><small>{{ BIO_TEXT }}</small></div>
+<div>
+  <small>
+    <a href="/">Posts</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/pages/dailies">Dailies</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/feeds/all.rss.xml">RSS</a>
+    <br>
+    <a href="/categories">Categories</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/tags">Tags</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/archives">Archives</a>
+  </small>
+</div>
+<br>
+{% if ADD_SEARCH_BOX %}
+  {% include "snippets/search.html" %}
+{% endif %}
