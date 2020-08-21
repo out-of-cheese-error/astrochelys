@@ -43,8 +43,27 @@ and instead of running ~pelican content~ to build your output files run ~make bu
 - All website colors and fonts are defined in the first few lines of ~static/css/astrochelys.css~, change these for a different theme. 
 - Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like.
 
-*** Margin notes
-See [[https://out-of-cheese-error.netlify.app/astrochelys#org6d6ec31][here]] on how to add margin notes to your articles.
+*** Margin notes and Side notes
+Add margin and side notes to your articles by including raw HTML (which can be done in markdown, Jupyter notebook, and org-mode formats at least)
+
+#+BEGIN_SRC html
+<label for="mn-note" class="margin-toggle">&raquo;</label>
+<input type="checkbox" id="mn-note" class="margin-toggle"/>
+<span class="marginnote">
+your note here
+</span>
+#+END_SRC
+
+and for a numbered side-note:
+#+BEGIN_SRC html
+<label for="sn-note" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-note" class="margin-toggle"/>
+<span class="sidenote">
+your note here
+</span>
+#+END_SRC
+
+*Change ~mn-note~ and ~sn-note~ to different names for each additional note* (both in the label and the id)
 
 ** More
 Every line of code in excruciating detail over at [[https://out-of-cheese-error.netlify.app/astrochelys][this post]]. 

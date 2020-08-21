@@ -733,7 +733,6 @@ This is just an HTML snippet with the site name, description, navigation links, 
   {% if ADD_SEARCH_BOX %}
     {% include "snippets/search.html" %}
   {% endif %}
- 
 #+END_SRC
 
 ** Sidebar
@@ -745,8 +744,6 @@ We'll define the sidebar in ~base.html~ to have the header and a section for the
         <div class="sidebar-header">
           {% include "snippets/header.html" %}
         </div>
-        <br>
-        <br>
         <div class="sidebar-content">
           <div class="toc">{% block toc %}{% endblock %}</div>
         </div>
