@@ -15,6 +15,28 @@ Astrochelys supports both [[https://analytics.google.com/analytics/web/][Google]
 *** Comments
 Astrochelys provides comments using either [[https://hypothes.is/][Hypothesis]] or [[https://disqus.com/][Disqus]] (or both). Disqus support is controlled by the variable ~DISQUS_SITENAME~ in ~pelicanconf.py~. Hypothesis is embedded in the header and appears on the right side of the page.
 
+*** Margin notes and Side notes
+Add margin and side notes to your articles by including raw HTML (which can be done in markdown, Jupyter notebook, and org-mode formats at least)
+
+#+BEGIN_SRC html
+<label for="mn-note" class="margin-toggle">&raquo;</label>
+<input type="checkbox" id="mn-note" class="margin-toggle"/>
+<span class="marginnote">
+your note here
+</span>
+#+END_SRC
+
+and for a numbered side-note:
+#+BEGIN_SRC html
+<label for="sn-note" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-note" class="margin-toggle"/>
+<span class="sidenote">
+your note here
+</span>
+#+END_SRC
+
+*Change mn-note and sn-note to different names for each additional note* (both in the label and the id)
+
 *** Search
 Astrochelys supports search via [[https://github.com/tinysearch/tinysearch][tinysearch]] and some JS code taken from [[https://github.com/mre/mre.github.io][Matthias Endler's blog source]]. To set this up:
 + Install tinysearch and terser as described in the tinysearch repository 
@@ -42,28 +64,6 @@ and instead of running ~pelican content~ to build your output files run ~make bu
 *** Colors & Fonts
 - All website colors and fonts are defined in the first few lines of ~static/css/astrochelys.css~, change these for a different theme. 
 - Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like.
-
-*** Margin notes and Side notes
-Add margin and side notes to your articles by including raw HTML (which can be done in markdown, Jupyter notebook, and org-mode formats at least)
-
-#+BEGIN_SRC html
-<label for="mn-note" class="margin-toggle">&raquo;</label>
-<input type="checkbox" id="mn-note" class="margin-toggle"/>
-<span class="marginnote">
-your note here
-</span>
-#+END_SRC
-
-and for a numbered side-note:
-#+BEGIN_SRC html
-<label for="sn-note" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-note" class="margin-toggle"/>
-<span class="sidenote">
-your note here
-</span>
-#+END_SRC
-
-*Change ~mn-note~ and ~sn-note~ to different names for each additional note* (both in the label and the id)
 
 ** More
 Every line of code in excruciating detail over at [[https://out-of-cheese-error.netlify.app/astrochelys][this post]]. 
