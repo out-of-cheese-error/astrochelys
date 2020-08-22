@@ -3,9 +3,9 @@ This is the theme we use for [[https://out-of-cheese-error.netlify.app/][OutOfCh
 ** Basic Usage 
 1. Start a blog using [[https://docs.getpelican.com/en/stable/quickstart.html][Pelican]]
 2. Clone this repository alongside your ~pelicanconf.py~
-3. Add THEME = "./astrochelys" to ~pelicanconf.py~
-4. *Add the following options* to ~pelicanconf.py~. (the table of contents can be customized as desribed [[https://github.com/ingwinlu/pelican-toc#settings][here]])
+3. *Add the following options* to ~pelicanconf.py~. (the table of contents can be customized as desribed [[https://github.com/ingwinlu/pelican-toc#settings][here]])
 #+BEGIN_SRC python
+THEME = "./astrochelys"
 TAG_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
