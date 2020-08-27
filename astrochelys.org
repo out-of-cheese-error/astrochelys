@@ -6,6 +6,7 @@
 #+PROPERTY: SUMMARY A not-your-everyday org-mode file that tangles out into a complete Pelican theme. Written by people with not a lot of CSS/HTML know-how.
 #+PROPERTY: SUBTITLE a Pelican theme from non-web developers
 #+PROPERTY: TAGS css, pelican, python, html, theme, astrochelys
+#+PROPERTY: TOC_HEADERS ^h[1-2]
 #+OPTIONS: toc:nil
 #+OPTIONS: num:nil
 
@@ -294,6 +295,21 @@ The main CSS file is called astrochelys.css and we'll be making it in parts belo
     color: #a6e22e
 }
 #+END_SRC
+
+
+* Edits
++ 23 August 2020 
+  Forgot to mention, the following lines are needed in ~pelicanconf.py~ to ensure that tags and categories are headings within the tags page and categories page instead of each tag/category having its own dedicated page.
+#+BEGIN_SRC python
+TAG_SAVE_AS = ''
+CATEGORY_SAVE_AS = ''
+#+END_SRC
+
++ 11 August 2020 - Added a search bar via [[https://github.com/tinysearch/tinysearch][tinysearch]]
++ 23 May 2020 - Embedded [[https://hypothes.is][Hypothesis]] for annotating / comments (removed Disqus)
++ 09 May 2020 - Show only 5 most recent posts on home page
++ 21 April 2020 - Added [[https://usefathom.com/][Fathom]] analytics option
+
 * Colors
 The main point of this theme is that it matches the syntax highlighting theme of the code blocks. This is important to us since we have code blocks in almost every post so it makes sense for everything to be cohesive. We started with Atom's [[https://github.com/atom/one-dark-syntax][One Dark syntax highlight theme]] as the base@@html:<label for="sn-onedark" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-onedark" class="margin-toggle"/><span class="sidenote">@@What I really wanted was the [[https://github.com/ianpan870102/wilmersdorf-emacs-theme][Wilmersdorf Emacs theme]] - it didn't have an easy pygments version though so One Dark was the next on the list@@html: </span>@@, and picked out some important colors from it (with slight modifications so that they also work on a white background).
 #+BEGIN_EXPORT html
@@ -515,7 +531,7 @@ hr {
    bottom:0;
    width:100%;
    height:30px;
-   font-weight: 0.5em;
+   font-size: 0.8em;
    text-align: center;
 }
 #+END_SRC
@@ -783,12 +799,13 @@ The associated CSS makes the sidebar use the condensed font so that longer title
       margin: 0 0 0.1em 0;
   }
   .sidebar-content {
-      margin: 5%;
+      margin: 10%;
       width: 90%;
       padding-left: 1.5em;
       text-align: right;
       font-size: 1em;
-      margin-top: 20%;
+      height: 70vh;
+      overflow-y: auto;
   }
   .sidebar-header {
       margin: 5%;
@@ -1480,6 +1497,11 @@ your note here
 your note here
 </span>
 #+END_SRC
+
+
+
+
+
 * Search 
 We decided to use [[https://github.com/tinysearch/tinysearch][tinysearch]] to add a tiny search box with full-text search. It's a bit on the simple side since there's no fuzzy search or keyword highlighting, but it's snappy and doesn't take up a lot of space which is all we can ask for. To add this to a website you first need to generate a list of JSON objects that hold the title, url and content of each post. This is pretty easy to do with a pelican template, which we save in ~templates/json.html~:
 #+BEGIN_SRC html :tangle "templates/json.html"
