@@ -1,5 +1,6 @@
 :root {
   --highlight-color-1: #a965bd;
+  --link-bg-color: #a965bd20;
   --highlight-color-2: #709158;
   --highlight-color-3: #e6e9ec;
   --darkest-color: #181b20;
@@ -39,6 +40,7 @@ a {
  text-decoration:none;
  color:var(--highlight-color-1);
  font-weight: bold;
+ background-color:var(--link-bg-color);
 }
 a:hover {
  color:var(--highlight-color-2);
@@ -160,6 +162,7 @@ hr {
 .sidebar a {
     font-weight: normal;
     border: 2em;
+    background-color: unset;
 }
 .sidebar li a:hover, .sidebar .toc a:hover {
     color: var(--highlight-color-1);
@@ -174,7 +177,7 @@ hr {
 .sidebar-content {
     margin: 10%;
     width: 90%;
-    padding-left: 1.5em;
+    padding-right: 1.5em;
     text-align: right;
     font-size: 1em;
     height: 70vh;

@@ -298,6 +298,9 @@ The main CSS file is called astrochelys.css and we'll be making it in parts belo
 
 
 * Edits
++ 26 December 2020
+  + Link backgrounds
+  + Better sidebar padding to allow for light or dark sidebars.
 + 23 August 2020 
   Forgot to mention, the following lines are needed in ~pelicanconf.py~ to ensure that tags and categories are headings within the tags page and categories page instead of each tag/category having its own dedicated page.
 #+BEGIN_SRC python
@@ -319,6 +322,7 @@ The main point of this theme is that it matches the syntax highlighting theme of
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
  :root {
   --highlight-color-1: #a965bd;
+  --link-bg-color: #a965bd20;
   --highlight-color-2: #709158;
   --highlight-color-3: #e6e9ec;
   --darkest-color: #181b20;
@@ -373,12 +377,13 @@ div {
 </details>
 #+END_EXPORT
 ** Links
-Hyperlinks are a nice place to add some pizzazz - a color for the text that changes and becomes underlined when you hover.
+Hyperlinks are a nice place to add some pizzazz - a color for the text that changes and becomes underlined when you hover, and a light background to make it stand out.
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 a {
  text-decoration:none;
  color:var(--highlight-color-1);
  font-weight: bold;
+ background-color:var(--link-bg-color);
 }
 a:hover {
  color:var(--highlight-color-2);
@@ -787,6 +792,7 @@ The associated CSS makes the sidebar use the condensed font so that longer title
   .sidebar a {
       font-weight: normal;
       border: 2em;
+      background-color: unset;
   }
   .sidebar li a:hover, .sidebar .toc a:hover {
       color: var(--highlight-color-1);
@@ -801,7 +807,7 @@ The associated CSS makes the sidebar use the condensed font so that longer title
   .sidebar-content {
       margin: 10%;
       width: 90%;
-      padding-left: 1.5em;
+      padding-right: 1.5em;
       text-align: right;
       font-size: 1em;
       height: 70vh;
