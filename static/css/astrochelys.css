@@ -1,24 +1,21 @@
 :root {
-  --highlight-color-1: #a965bd;
-  --link-bg-color: #a965bd20;
-  --highlight-color-2: #709158;
-  --highlight-color-3: #e6e9ec;
-  --darkest-color: #181b20;
-  --darker-color: #282c34;
-  --lighter-color: #a89aae;
-  --lightest-color: #fff;
+  --main-color: #8959a8; /* the .k (keyword) color  */ 
+  --bg-color-main: #fff; /* overall background */
+  --secondary-color: #4d4d4c; /* the .n (name) color  */
+  --bg-color-secondary: #4d4d4c20; /* same as secondary-color but with lower opacity, background for certain elements */
+  --text-color: #1d1f21; /* nearly black */
 }
 
 :root {
-  --fixed-font: "Fira Code";
+  --fixed-font: "Fira Code Medium";
   --variable-font: "Cantarell";
   --condensed-font: "Fira Sans Condensed";
   --sitename-font: "VT323";
 }
 
 body {
- color:var(--darkest-color);
- background-color:var(--lightest-color);
+ color:var(--text-color);
+ background-color:var(--bg-color);
  font-family: var(--variable-font), serif;
  font-size: 1em;
  margin:0
@@ -35,50 +32,56 @@ div {
 .condensed-font {
  font-family: var(--condensed-font), sans-serif;
 }
+.fixed-font {
+ font-family: var(--fixed-font), monospace;
+}
 
 a {
  text-decoration:none;
- color:var(--highlight-color-1);
+ color:var(--main-color);
  font-weight: bold;
- background-color:var(--link-bg-color);
+ background-color:var(--bg-color-secondary);
 }
 a:hover {
- color:var(--highlight-color-2);
- border-bottom:1px solid var(--highlight-color-2)
+ color:var(--secondary-color);
+ border-bottom:1px solid var(--secondary-color)
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
- font-family:var(--condensed-font), sans-serif;
- line-height: 1em;
-}
-h1 {font-size:2.5em}
-h2 {font-size:2em}
-h3 {font-size:1.8em}
-h4 {font-size:1.5em}
-h5 {font-size:1.2em}
-h6 {font-size:1em}
-@media screen and (max-width:48em) {
-    h1 {font-size:2em}
-    h2 {font-size:1.8em}
-    h3 {font-size:1.5em}
-    h4 {font-size:1.2em}
-    h5 {font-size:1em}
-    h6 {font-size:1em}
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+   font-family:var(--condensed-font), sans-serif;
+   line-height: 1em;
+  }
+  h1 {font-size:2.5em}
+  h2 {font-size:2em}
+  h3 {font-size:1.8em}
+  h4 {font-size:1.5em}
+  h5 {font-size:1.2em}
+  h6 {font-size:1em}
+  @media screen and (max-width:48em) {
+      h1 {font-size:2em}
+      h2 {font-size:1.8em}
+      h3 {font-size:1.5em}
+      h4 {font-size:1.2em}
+      h5 {font-size:1em}
+      h6 {font-size:1em}
+  }
+
+h2 a {
+  background-color: unset;
 }
 
 code {
-  background: var(--highlight-color-3);
+  background: var(--bg-color-secondary);
   font-family: var(--fixed-font), monospace;
 }
 pre, pre code {
-  background: var(--darker-color);
   font-family: var(--fixed-font), monospace;
-  color: var(--lighter-color);
+  color: var(--secondary-color);
   font-size:1em;
   width: inherit;  
   max-width: 100%; 
@@ -88,6 +91,8 @@ pre, pre code {
   margin-bottom: 0.5em;
   display: block;
   overflow-x:auto;
+  border: 0.3em solid;
+  border-color: var(--bg-color-secondary);
   -webkit-text-size-adjust:none
 }
 
@@ -104,31 +109,26 @@ blockquote{
   width: 95%;
   margin: 1em auto;
   font-family: inherit;
-  font-style: italic;
-  color: var(--darker-color);
-  padding: 1em 2em 1em 3em;
-  border-left: 1em solid var(--highlight-color-1) ;
+  color: var(--text-color);
+  padding: 0.5em 0.5em 0.1em 2em;
+  border-left: 0.5em solid var(--main-color) ;
   position: relative;
-  background:var(--highlight-color-3);
-}
+  background:var(--bg-color-secondary);
+}  
 
 blockquote::before{
-  font-family:var(--variable-font), serif;
+  font-family:var(--condensed-font);
   content: "\201C";
-  color:var(--highlight-color-1);
+  color:var(--main-color);
   font-size:4em;
   position: absolute;
-  left: 0;
-  top: 0;
-}
-
-blockquote::after{
-  content: '';
+  left: 0.1em;
+  top:-0.1em;
 }
 
 hr {
  border:0;
- border-top:0.2em solid var(--highlight-color-1);
+ border-top:0.2em solid var(--main-color);
  margin:0.4em 0
 }
 
@@ -151,8 +151,8 @@ hr {
 }
 
 .sidebar {
-    background: var(--lightest-color);
-    color: var(--lighter-color);
+    background: var(--bg-color-secondary);
+    color: var(--secondary-color);
     font-family: var(--condensed-font), sans-serif;
 }
 .sitename {
@@ -165,10 +165,10 @@ hr {
     background-color: unset;
 }
 .sidebar li a:hover, .sidebar .toc a:hover {
-    color: var(--highlight-color-1);
+    color: var(--main-color);
 }
 .sidebar li a, .sidebar .toc a {
-    color: var(--lighter-color);
+    color: var(--secondary-color);
 }
 .sidebar li {
     line-height: 1.5em;
@@ -216,8 +216,8 @@ hr {
     .phone-header {
         display: block;
         text-align: center;
-        background: var(--lightest-color);
-        color: var(--lighter-color);
+        background: var(--bg-color-secondary);
+        color: var(--secondary-color);
         min-height: 3.5em;
         position: relative;
         padding: 1em;
@@ -257,7 +257,7 @@ hr {
     font-family: var(--condensed-font), sans-serif;
 }
 .article-information-heading {
-    color: var(--lighter-color);
+    color: var(--secondary-color);
 }
 
 .list-of-tags {
@@ -272,9 +272,9 @@ hr {
     margin: 0;
 }
 .list-of-tags a {
-    background: var(--highlight-color-3);
+    background: var(--bg-color-secondary);
     border-radius: 3px;
-    color: var(--darker-color);
+    color: var(--text-color);
     margin: 2px;
     padding: 0.1em 0.4em;
     text-decoration: none;
@@ -301,7 +301,7 @@ hr {
     position: relative; 
 }
 .margin-toggle {
-      color: var(--highlight-color-2);
+      color: var(--secondary-color);
 }
 .sidenote-number {
     counter-increment: sidenote-counter; 
@@ -329,7 +329,7 @@ blockquote .marginnote {
     text-align: left; 
 }
 .marginnote hr {
-  color: var(--highlight-color-1);
+  color: var(--main-color);
 }
 label.sidenote-number {
     display: inline; 
@@ -386,13 +386,13 @@ input:focus::placeholder {
   position: absolute;
   font-size: 0.7em;
   width: 100%;
-  color: var(--lightest-color);
+  color: var(--text-color);
 }
 
 .autocomplete-items div {
   cursor: pointer;
-  background-color: var(--lighter-color);
-  border: 0.5px dotted var(--darker-color);
+  background-color: var(--bg-color-main);
+  border: 0.1em dashed var(--main-color);
 }
 
 .autocomplete-items div:hover,

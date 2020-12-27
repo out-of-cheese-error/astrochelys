@@ -39,296 +39,102 @@ This post is going to be a bit ambitious in that it's a literate org-mode file w
 </details>
 #+END_EXPORT
 
-The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-pygments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-pygments" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the One Dark syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@.
+The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-pygments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-pygments" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the [[https://github.com/mozmorris/tomorrow-pygments/blob/master/css/tomorrow.css][Tomorrow]] syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@.
 #+BEGIN_SRC css :tangle "static/css/pygments.css" :exports none
-.hll {
-    background: #282c34
-    }
-
-.c {
-    color: #5c6370;
-    font-style: italic
-}
-
-.err {
-    color: #960050;
-    background-color: #1e0010
-}
-
-.k {
-    color: #c678dd
-}
-
-.l {
-    color: #98c379
-}
-
-.n {
-    color: #abb2bf
-}
-
-.o {
-    color: #abb2bf
-}
-
-.p {
-    color: #abb2bf
-}
-
-.cm {
-    color: #5c6370;
-    font-style: italic
-}
-
-.cp {
-    color: #5c6370;
-    font-style: italic
-}
-
-.c1 {
-    color: #5c6370;
-    font-style: italic
-}
-
-.cs {
-    color: #5c6370;
-    font-style: italic
-}
-
-.ge {
-    font-style: italic
-}
-
-.gs {
-    font-weight: 700
-}
-
-.kc {
-    color: #c678dd
-}
-
-.kd {
-    color: #c678dd
-}
-
-.kn {
-    color: #c678dd
-}
-
-.kp {
-    color: #c678dd
-}
-
-.kr {
-    color: #c678dd
-}
-
-.kt {
-    color: #c678dd
-}
-
-.ld {
-    color: #98c379
-}
-
-.m {
-    color: #d19a66
-}
-
-.s {
-    color: #98c379
-}
-
-.na {
-    color: #d19a66
-}
-
-.nb {
-    color: #e5c07b
-}
-
-.nc {
-    color: #e5c07b
-}
-
-.no {
-    color: #e5c07b
-}
-
-.nd {
-    color: #e5c07b
-}
-
-.ni {
-    color: #e5c07b
-}
-
-.ne {
-    color: #e5c07b
-}
-
-.nf {
-    color: #abb2bf
-}
-
-.nl {
-    color: #e5c07b
-}
-
-.nn {
-    color: #abb2bf
-}
-
-.nx {
-    color: #abb2bf
-}
-
-.py {
-    color: #e5c07b
-}
-
-.nt {
-    color: #e06c75
-}
-
-.nv {
-    color: #e5c07b
-}
-
-.ow {
-    font-weight: 700
-}
-
-.w {
-    color: #f8f8f2
-}
-
-.mf {
-    color: #d19a66
-}
-
-.mh {
-    color: #d19a66
-}
-
-.mi {
-    color: #d19a66
-}
-
-.mo {
-    color: #d19a66
-}
-
-.sb {
-    color: #98c379
-}
-
-.sc {
-    color: #98c379
-}
-
-.sd {
-    color: #98c379
-}
-
-.s2 {
-    color: #98c379
-}
-
-.se {
-    color: #98c379
-}
-
-.sh {
-    color: #98c379
-}
-
-.si {
-    color: #98c379
-}
-
-.sx {
-    color: #98c379
-}
-
-.sr {
-    color: #56b6c2
-}
-
-.s1 {
-    color: #98c379
-}
-
-.ss {
-    color: #56b6c2
-}
-
-.bp {
-    color: #e5c07b
-}
-
-.vc {
-    color: #e5c07b
-}
-
-.vg {
-    color: #e5c07b
-}
-
-.vi {
-    color: #e06c75
-}
-
-.il {
-    color: #d19a66
-}
-
-.gu {
-    color: #75715e
-}
-
-.gd {
-    color: #f92672
-}
-
-.gi {
-    color: #a6e22e
-}
+.highlight .hll { background-color: #d6d6d6 }
+.highlight  { background: #ffffff; color: #4d4d4c }
+.highlight .c { color: #8e908c } /* Comment */
+.highlight .err { color: #c82829 } /* Error */
+.highlight .k { color: #8959a8 } /* Keyword */
+.highlight .l { color: #f5871f } /* Literal */
+.highlight .n { color: #4d4d4c } /* Name */
+.highlight .o { color: #3e999f } /* Operator */
+.highlight .p { color: #4d4d4c } /* Punctuation */
+.highlight .cm { color: #8e908c } /* Comment.Multiline */
+.highlight .cp { color: #8e908c } /* Comment.Preproc */
+.highlight .c1 { color: #8e908c } /* Comment.Single */
+.highlight .cs { color: #8e908c } /* Comment.Special */
+.highlight .gd { color: #c82829 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gh { color: #4d4d4c; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #718c00 } /* Generic.Inserted */
+.highlight .gp { color: #8e908c; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #3e999f; font-weight: bold } /* Generic.Subheading */
+.highlight .kc { color: #8959a8 } /* Keyword.Constant */
+.highlight .kd { color: #8959a8 } /* Keyword.Declaration */
+.highlight .kn { color: #3e999f } /* Keyword.Namespace */
+.highlight .kp { color: #8959a8 } /* Keyword.Pseudo */
+.highlight .kr { color: #8959a8 } /* Keyword.Reserved */
+.highlight .kt { color: #eab700 } /* Keyword.Type */
+.highlight .ld { color: #718c00 } /* Literal.Date */
+.highlight .m { color: #f5871f } /* Literal.Number */
+.highlight .s { color: #718c00 } /* Literal.String */
+.highlight .na { color: #4271ae } /* Name.Attribute */
+.highlight .nb { color: #4d4d4c } /* Name.Builtin */
+.highlight .nc { color: #eab700 } /* Name.Class */
+.highlight .no { color: #c82829 } /* Name.Constant */
+.highlight .nd { color: #3e999f } /* Name.Decorator */
+.highlight .ni { color: #4d4d4c } /* Name.Entity */
+.highlight .ne { color: #c82829 } /* Name.Exception */
+.highlight .nf { color: #4271ae } /* Name.Function */
+.highlight .nl { color: #4d4d4c } /* Name.Label */
+.highlight .nn { color: #eab700 } /* Name.Namespace */
+.highlight .nx { color: #4271ae } /* Name.Other */
+.highlight .py { color: #4d4d4c } /* Name.Property */
+.highlight .nt { color: #3e999f } /* Name.Tag */
+.highlight .nv { color: #c82829 } /* Name.Variable */
+.highlight .ow { color: #3e999f } /* Operator.Word */
+.highlight .w { color: #4d4d4c } /* Text.Whitespace */
+.highlight .mf { color: #f5871f } /* Literal.Number.Float */
+.highlight .mh { color: #f5871f } /* Literal.Number.Hex */
+.highlight .mi { color: #f5871f } /* Literal.Number.Integer */
+.highlight .mo { color: #f5871f } /* Literal.Number.Oct */
+.highlight .sb { color: #718c00 } /* Literal.String.Backtick */
+.highlight .sc { color: #4d4d4c } /* Literal.String.Char */
+.highlight .sd { color: #8e908c } /* Literal.String.Doc */
+.highlight .s2 { color: #718c00 } /* Literal.String.Double */
+.highlight .se { color: #f5871f } /* Literal.String.Escape */
+.highlight .sh { color: #718c00 } /* Literal.String.Heredoc */
+.highlight .si { color: #f5871f } /* Literal.String.Interpol */
+.highlight .sx { color: #718c00 } /* Literal.String.Other */
+.highlight .sr { color: #718c00 } /* Literal.String.Regex */
+.highlight .s1 { color: #718c00 } /* Literal.String.Single */
+.highlight .ss { color: #718c00 } /* Literal.String.Symbol */
+.highlight .bp { color: #4d4d4c } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #c82829 } /* Name.Variable.Class */
+.highlight .vg { color: #c82829 } /* Name.Variable.Global */
+.highlight .vi { color: #c82829 } /* Name.Variable.Instance */
+.highlight .il { color: #f5871f } /* Literal.Number.Integer.Long */
 #+END_SRC
 
-
 * Edits
-+ 26 December 2020
-  + Link backgrounds
-  + Better sidebar padding to allow for light or dark sidebars.
++ 27 December 2020
+  Simplified colors and switched to Tomorrow theme. Added sidebar color, link backgrounds, code block borders.
 + 23 August 2020 
-  Forgot to mention, the following lines are needed in ~pelicanconf.py~ to ensure that tags and categories are headings within the tags page and categories page instead of each tag/category having its own dedicated page.
+*Important!* The following lines are needed in ~pelicanconf.py~ to ensure that tags and categories are headings within the tags page and categories page instead of each tag/category having its own dedicated page.
 #+BEGIN_SRC python
 TAG_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
 #+END_SRC
-
 + 11 August 2020 - Added a search bar via [[https://github.com/tinysearch/tinysearch][tinysearch]]
 + 23 May 2020 - Embedded [[https://hypothes.is][Hypothesis]] for annotating / comments (removed Disqus)
 + 09 May 2020 - Show only 5 most recent posts on home page
 + 21 April 2020 - Added [[https://usefathom.com/][Fathom]] analytics option
 
 * Colors
-The main point of this theme is that it matches the syntax highlighting theme of the code blocks. This is important to us since we have code blocks in almost every post so it makes sense for everything to be cohesive. We started with Atom's [[https://github.com/atom/one-dark-syntax][One Dark syntax highlight theme]] as the base@@html:<label for="sn-onedark" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-onedark" class="margin-toggle"/><span class="sidenote">@@What I really wanted was the [[https://github.com/ianpan870102/wilmersdorf-emacs-theme][Wilmersdorf Emacs theme]] - it didn't have an easy pygments version though so One Dark was the next on the list@@html: </span>@@, and picked out some important colors from it (with slight modifications so that they also work on a white background).
+Since we have code blocks in almost every post, we'd like the colors to match the syntax highlighting theme. We're using the [[https://github.com/mozmorris/tomorrow-pygments/blob/master/css/tomorrow.css][Tomorrow]] theme - the main color (for titles and such) will be a  common color from the syntax highlighting theme: the color set for keywords (~.k~). Then, we use the name color (~.n~) as the color for hover text, sidebar links etc. A lower opacity version of this color is used as the background for the sidebar, links, inline code, blockquotes etc. 
 #+BEGIN_EXPORT html
   <details>
   <summary>Defining colors</summary>
   #+END_EXPORT
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
  :root {
-  --highlight-color-1: #a965bd;
-  --link-bg-color: #a965bd20;
-  --highlight-color-2: #709158;
-  --highlight-color-3: #e6e9ec;
-  --darkest-color: #181b20;
-  --darker-color: #282c34;
-  --lighter-color: #a89aae;
-  --lightest-color: #fff;
+  --main-color: #8959a8; /* the .k (keyword) color  */ 
+  --bg-color-main: #fff; /* overall background */
+  --secondary-color: #4d4d4c; /* the .n (name) color  */
+  --bg-color-secondary: #4d4d4c20; /* same as secondary-color but with lower opacity, background for certain elements */
+  --text-color: #1d1f21; /* nearly black */
 }
 #+END_SRC
 #+BEGIN_EXPORT html
@@ -338,7 +144,7 @@ The main point of this theme is that it matches the syntax highlighting theme of
 We need one for code (fixed-font), one for long-form text (variable-font), and one for headings and things in capitals that needs to look good when they're big (condensed-font), and finally one for writing OutOFCheeseError. These were the ones we picked from [[https://fonts.google.com/][Google Fonts]].
 #+BEGIN_SRC css  :tangle "static/css/astrochelys.css"
 :root {
-  --fixed-font: "Fira Code";
+  --fixed-font: "Fira Code Medium";
   --variable-font: "Cantarell";
   --condensed-font: "Fira Sans Condensed";
   --sitename-font: "VT323";
@@ -354,8 +160,8 @@ Most of the page is going to be white with dark text and normal writing font. Th
 #+END_EXPORT  
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 body {
- color:var(--darkest-color);
- background-color:var(--lightest-color);
+ color:var(--text-color);
+ background-color:var(--bg-color);
  font-family: var(--variable-font), serif;
  font-size: 1em;
  margin:0
@@ -372,26 +178,29 @@ div {
 .condensed-font {
  font-family: var(--condensed-font), sans-serif;
 }
+.fixed-font {
+ font-family: var(--fixed-font), monospace;
+}
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
 ** Links
-Hyperlinks are a nice place to add some pizzazz - a color for the text that changes and becomes underlined when you hover, and a light background to make it stand out.
+Hyperlinks are a nice place to add some pizzazz - a color for the text that changes and becomes underlined when you hover, and a light background to make them stand out.
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 a {
  text-decoration:none;
- color:var(--highlight-color-1);
+ color:var(--main-color);
  font-weight: bold;
- background-color:var(--link-bg-color);
+ background-color:var(--bg-color-secondary);
 }
 a:hover {
- color:var(--highlight-color-2);
- border-bottom:1px solid var(--highlight-color-2)
+ color:var(--secondary-color);
+ border-bottom:1px solid var(--secondary-color)
 }
 #+END_SRC
 ** Headings
-These are usually going to be big so we use our narrower font and make sure there's enough space in between lines. The first set of ~font-size~ lines define what the sizes will be on laptop and desktop screens while the second set is for smaller screens (<48em width).
+These are usually going to be big so we use our narrower font and make sure there's enough space in between lines. The first set of ~font-size~ lines define what the sizes will be on laptop and desktop screens while the second set is for smaller screens (<48em width). We also make sure that title links on the main page don't have the link background.
 #+BEGIN_EXPORT html
 <details>
 <summary>Styling headers</summary>
@@ -420,26 +229,29 @@ These are usually going to be big so we use our narrower font and make sure ther
       h5 {font-size:1em}
       h6 {font-size:1em}
   }
+
+h2 a {
+  background-color: unset;
+}
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
 
 ** Code blocks
-There's two kinds of code - ~inline code~ (which is just <code> in HTML) and code blocks like the one below (which are surrounded by <pre> tags). The former just has a different font and a light background color to distinguish it from text, while the latter has a full gamut of margins and padding and so on.
+There's two kinds of code - ~inline code~ (which is just <code> in HTML) and code blocks like the one below (which are surrounded by <pre> tags). The former just has a different font and a light background color to distinguish it from text, while the latter has a full gamut of margins, borders, padding and so on.
 #+BEGIN_EXPORT html
 <details>
 <summary>Styling code</summary>
 #+END_EXPORT
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 code {
-  background: var(--highlight-color-3);
+  background: var(--bg-color-secondary);
   font-family: var(--fixed-font), monospace;
 }
 pre, pre code {
-  background: var(--darker-color);
   font-family: var(--fixed-font), monospace;
-  color: var(--lighter-color);
+  color: var(--secondary-color);
   font-size:1em;
   width: inherit;  
   max-width: 100%; 
@@ -449,6 +261,8 @@ pre, pre code {
   margin-bottom: 0.5em;
   display: block;
   overflow-x:auto;
+  border: 0.3em solid;
+  border-color: var(--bg-color-secondary);
   -webkit-text-size-adjust:none
 }
 #+END_SRC
@@ -476,60 +290,57 @@ img {
 #+END_EXPORT
 
 ** Blockquotes
-People are interesting and say quotable things often. Here's one
-#+BEGIN_QUOTE
-  Human beings, little bags of thinking water held up briefly by fragile accumulations of calcium
-
-  *Terry Pratchett (Pyramids)*
-#+END_QUOTE
-We adapted this [[https://codepen.io/cliftwalker/pen/XJaEXY][codepen]] for a simple blockquote with our highlight colors.
+We adapted this [[https://codepen.io/cliftwalker/pen/XJaEXY][codepen]] for a simple blockquote.
 #+BEGIN_EXPORT html
 <details>
 <summary>Styling blockquotes</summary>
 #+END_EXPORT
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
-  blockquote{
-    font-size: 1em;
-    width: 95%;
-    margin: 1em auto;
-    font-family: inherit;
-    font-style: italic;
-    color: var(--darker-color);
-    padding: 1em 2em 1em 3em;
-    border-left: 1em solid var(--highlight-color-1) ;
-    position: relative;
-    background:var(--highlight-color-3);
-  }
+blockquote{
+  font-size: 1em;
+  width: 95%;
+  margin: 1em auto;
+  font-family: inherit;
+  color: var(--text-color);
+  padding: 0.5em 0.5em 0.1em 2em;
+  border-left: 0.5em solid var(--main-color) ;
+  position: relative;
+  background:var(--bg-color-secondary);
+}  
 
-  blockquote::before{
-    font-family:var(--variable-font), serif;
-    content: "\201C";
-    color:var(--highlight-color-1);
-    font-size:4em;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  blockquote::after{
-    content: '';
-  }  
+blockquote::before{
+  font-family:var(--condensed-font);
+  content: "\201C";
+  color:var(--main-color);
+  font-size:4em;
+  position: absolute;
+  left: 0.1em;
+  top:-0.1em;
+}
 #+END_SRC
+
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
 
+Here's how that looks:
+#+BEGIN_QUOTE
+  Human beings, little bags of thinking water held up briefly by fragile accumulations of calcium
+
+  *Terry Pratchett (Pyramids)*
+#+END_QUOTE
 ** Horizontal lines
 These are the thin purple lines under the title in the sidebar and, if you're on a bigger screen, surrounding the little margin note on top about this post.
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 hr {
  border:0;
- border-top:0.2em solid var(--highlight-color-1);
+ border-top:0.2em solid var(--main-color);
  margin:0.4em 0
 }
 #+END_SRC
 
 ** Footer
+This controls the CSS for the "Powered by Pelican and Astrochelys" text at the bottom of the sidebar.
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 #footer {
    position:absolute;
@@ -570,7 +381,7 @@ hr {
       <!--<![endif]-->
 
       {#Fonts#}
-      <link href="https://fonts.googleapis.com/css?family=Fira+Code|Fira+Sans+Condensed|Cantarell|VT323&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Fira+Code:wght@500|Fira+Sans+Condensed|Cantarell|VT323&display=swap" rel="stylesheet">
 
       {#Stylesheets#}
       {% assets filters="cssmin", output="style.min.css", "css/astrochelys.css", "css/pygments.css" %}
@@ -773,7 +584,7 @@ We'll define the sidebar in ~base.html~ to have the header and a section for the
   </div>
 #+END_SRC
 
-The associated CSS makes the sidebar use the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text, and make them right-justified so it sits flush against the post text. By setting the font-size to a relative percentage like 90% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. Finally, for laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page. 
+The associated CSS makes the sidebar use the condensed font so that longer titles still look okay. Since almost everything in the sidebar is a link, we style them different from links in the text, and make them right-justified so it sits flush against the post text. By setting the font-size to a relative percentage like 90% for lists, you get this nice gradation in sizes for h1, h2, and h3 headings. For laptop / computer screens the sidebar position is fixed, meaning it doesn't move when you scroll through the page.  
 #+BEGIN_EXPORT html
 <details>
 <summary>Sidebar CSS</summary>
@@ -781,8 +592,8 @@ The associated CSS makes the sidebar use the condensed font so that longer title
 #+CAPTION: Sidebar CSS
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
   .sidebar {
-      background: var(--lightest-color);
-      color: var(--lighter-color);
+      background: var(--bg-color-secondary);
+      color: var(--secondary-color);
       font-family: var(--condensed-font), sans-serif;
   }
   .sitename {
@@ -795,10 +606,10 @@ The associated CSS makes the sidebar use the condensed font so that longer title
       background-color: unset;
   }
   .sidebar li a:hover, .sidebar .toc a:hover {
-      color: var(--highlight-color-1);
+      color: var(--main-color);
   }
   .sidebar li a, .sidebar .toc a {
-      color: var(--lighter-color);
+      color: var(--secondary-color);
   }
   .sidebar li {
       line-height: 1.5em;
@@ -865,8 +676,8 @@ The CSS turns off the phone header for larger screens, turns off the sidebar for
       .phone-header {
           display: block;
           text-align: center;
-          background: var(--lightest-color);
-          color: var(--lighter-color);
+          background: var(--bg-color-secondary);
+          color: var(--secondary-color);
           min-height: 3.5em;
           position: relative;
           padding: 1em;
@@ -1002,7 +813,14 @@ The table of contents (~block toc~) in the sidebar changes per page, so you defi
 </details>
 #+END_EXPORT
 
-For the Tags page we list all tags (in alphabetical order) separated by a "." (since we're rather tag-happy and putting them in different lines means the sidebar would run out of space pretty quickly). Clicking on one should jump to the part of the page for that tag, so we use a relative link here with ~#~ that we'll re-use in the content section. The Categories page sidebar is similar. And we don't yet have a sidebar for the Archives since I wasn't entirely sure how to code it in - maybe later.
+For the Tags page we list all tags (in alphabetical order) separated by a "." (since we're rather tag-happy and putting them in different lines means the sidebar would run out of space pretty quickly). Clicking on one should jump to the part of the page for that tag, so we use a relative link here with ~#~ that we'll re-use in the content section. The Categories page sidebar is similar. By default Pelican makes a different page for each tag and each category - to turn off this behavior and have a single page for tags and one for categories you'll need to add the following in your ~pelicanconf.py~
+
+#+BEGIN_SRC python
+TAG_SAVE_AS = ''
+CATEGORY_SAVE_AS = ''
+#+END_SRC
+
+
 #+BEGIN_EXPORT html
 <details>
 <summary>TOC in tags.html</summary>
@@ -1043,8 +861,9 @@ For the Tags page we list all tags (in alphabetical order) separated by a "." (s
 </details>
 #+END_EXPORT
 
+And we don't yet have a sidebar for the Archives since I wasn't entirely sure how to code it in - maybe later.
 ** Content
-The Index page gives the titles, subtitles, and summaries of all our posts.
+The Index page gives the titles, subtitles, and summaries of all our posts. We put each article's published date in a margin note to use up more of the page.
 #+BEGIN_EXPORT html
 <details>
 <summary>Content in index.html</summary>
@@ -1056,7 +875,7 @@ The Index page gives the titles, subtitles, and summaries of all our posts.
     {% for article in articles_page.object_list %}
     <article class="hentry">
       <div class="marginnote">
-        <div class="condensed-font">
+        <div class="fixed-font">
           <time class="published" datetime="{{ article.date.isoformat() }}">
             {{ article.locale_date }}
           </time>
@@ -1202,7 +1021,7 @@ Some minor styling:
       font-family: var(--condensed-font), sans-serif;
   }
   .article-information-heading {
-      color: var(--lighter-color);
+      color: var(--secondary-color);
   }
 #+END_SRC
 
@@ -1224,7 +1043,7 @@ Some minor styling:
 </details>
 #+END_EXPORT
 
-We really liked the Tags page from pelican-elegant, which starts off with a sort of cloud of all tags. Turns out it's just a list but then you style it with CSS. After that there's a section for each tag listing the articles associated with it. We put each article's published date in a margin note to use up more of the page. 
+We really liked the Tags page from pelican-elegant, which starts off with a sort of cloud of all tags. Turns out it's just a list but then you style it with CSS. After that there's a section for each tag listing the articles associated with it. 
 #+BEGIN_EXPORT html
 <details>
 <summary>Content in tags.html</summary>
@@ -1248,7 +1067,7 @@ We really liked the Tags page from pelican-elegant, which starts off with a sort
       <h3 id="{{ tag.slug }}-ref" class="tag-title">{{ tag }}</h3>
         {% for article in articles|sort(reverse = true, attribute = 'date') %}
         <div class="marginnote">
-          <div class="condensed-font">
+          <div class="fixed-font">
             <time class="published" datetime="{{ article.date.isoformat() }}">
               {{ article.locale_date }}
             </time>
@@ -1287,9 +1106,9 @@ We really liked the Tags page from pelican-elegant, which starts off with a sort
     margin: 0;
 }
 .list-of-tags a {
-    background: var(--highlight-color-3);
+    background: var(--bg-color-secondary);
     border-radius: 3px;
-    color: var(--darker-color);
+    color: var(--text-color);
     margin: 2px;
     padding: 0.1em 0.4em;
     text-decoration: none;
@@ -1323,7 +1142,7 @@ The Categories and Archives pages are pretty much the same as the tags page exce
     <div id="{{ category.slug }}-ref">
       {% for article in articles %}
       <div class="marginnote">
-      <div class="condensed-font">
+      <div class="fixed-font">
         <time class="published" datetime="{{ article.date.isoformat() }}">
           {{ article.locale_date }}
         </time>
@@ -1367,7 +1186,7 @@ The Categories and Archives pages are pretty much the same as the tags page exce
     {% set month = article.date.strftime('%m') %}
     {% set day = article.date.strftime('%d') %}
     <div class="marginnote">
-    <div class="condensed-font">
+    <div class="fixed-font">
       <time class="published" datetime="{{ article.date.isoformat() }}">
         {{ article.locale_date }}
       </time>
@@ -1411,7 +1230,7 @@ Well, we have space free on the right; let's make some notes in the margin. This
       position: relative; 
   }
   .margin-toggle {
-        color: var(--highlight-color-2);
+        color: var(--secondary-color);
   }
   .sidenote-number {
       counter-increment: sidenote-counter; 
@@ -1439,7 +1258,7 @@ Well, we have space free on the right; let's make some notes in the margin. This
       text-align: left; 
   }
   .marginnote hr {
-    color: var(--highlight-color-1);
+    color: var(--main-color);
   }
   label.sidenote-number {
       display: inline; 
@@ -1503,9 +1322,6 @@ your note here
 your note here
 </span>
 #+END_SRC
-
-
-
 
 
 * Search 
@@ -1695,13 +1511,13 @@ input:focus::placeholder {
   position: absolute;
   font-size: 0.7em;
   width: 100%;
-  color: var(--lightest-color);
+  color: var(--text-color);
 }
 
 .autocomplete-items div {
   cursor: pointer;
-  background-color: var(--lighter-color);
-  border: 0.5px dotted var(--darker-color);
+  background-color: var(--bg-color-main);
+  border: 0.1em dashed var(--main-color);
 }
 
 .autocomplete-items div:hover,
@@ -1714,4 +1530,10 @@ Great! With all this set up, adding a search box to a page is as simple as addin
 wherever we want it to be; you may have noticed it already in the [[Header][Header]].
 
 * Next steps
-Nothing really, we're pretty happy with this theme for now. The nice thing is, if we get bored of the color scheme, we just need to pick a new (pygmentizable) syntax highlighting theme and change the colors accordingly. There's no social media stuff for now, I guess we could at least add a GitHub link in the sidebar. Also some vector art could be nice, [[https://en.wikipedia.org/wiki/Radiated_tortoise][/Astrochelys radiata/]] perhaps. 
+We're pretty happy with this theme for now. If we get bored of the color scheme, we just need to pick a new (pygmentizable) syntax highlighting theme and change the colors accordingly. 
+
+Some comments / issues:
++ The search doesn't seem to work on mobile, need to look into that.
++ The sidebar could use a section for things like GitHub links.
++ Maybe a dark mode? ([[https://timvisee.com/blog/dark-mode-toggle-on-static-website/][Like here]])
++ Some vector art could be nice, [[https://en.wikipedia.org/wiki/Radiated_tortoise][/Astrochelys radiata/]] perhaps. 

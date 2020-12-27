@@ -31,7 +31,7 @@
   <h3 id="{{ tag.slug }}-ref" class="tag-title">{{ tag }}</h3>
     {% for article in articles|sort(reverse = true, attribute = 'date') %}
     <div class="marginnote">
-      <div class="condensed-font">
+      <div class="fixed-font">
         <time class="published" datetime="{{ article.date.isoformat() }}">
           {{ article.locale_date }}
         </time>

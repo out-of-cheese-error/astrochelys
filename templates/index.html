@@ -25,7 +25,7 @@
   {% for article in articles_page.object_list %}
   <article class="hentry">
     <div class="marginnote">
-      <div class="condensed-font">
+      <div class="fixed-font">
         <time class="published" datetime="{{ article.date.isoformat() }}">
           {{ article.locale_date }}
         </time>
