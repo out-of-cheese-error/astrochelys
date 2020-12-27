@@ -70,8 +70,7 @@ and, instead of running ~pelican content~ to build your output files, run ~make 
 
 *** Colors & Fonts
 - All website colors and fonts are defined in the first few lines of ~static/css/astrochelys.css~, change these for a different theme. The modified fonts need to be downloaded from Google Fonts in the Fonts section of the ~<head>~ in ~static/templates/base.html~ 
-- Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like. If your syntax theme needs a non-white background, add 
-~background: <color>~ to the ~pre, pre code~ section in ~astrochelys.css~. You can then probably remove the border since the color already demarcates the code block.
+- Syntax highlighting colors are defined in ~static/css/pygments.css~. Change this to any pygments theme you like. If your syntax theme needs a non-white background, add ~background: <color>~ to the ~pre, pre code~ section in ~astrochelys.css~. You can then probably remove the border since the color already demarcates the code block.
 - Change the sidebar color by changing the ~background~ variable in the ~.sidebar~ section of ~astrochelys.css~.
 ** More
 Every line of code in excruciating detail over at [[https://out-of-cheese-error.netlify.app/astrochelys][this post]]. 
