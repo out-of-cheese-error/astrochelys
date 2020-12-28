@@ -203,6 +203,11 @@ hr {
            bottom: 0;
        }
 }
+@media print {
+    .sidebar {
+           display: none;
+       }
+}
 
 @media (min-width: 48em) {
     .phone-header {
@@ -227,6 +232,12 @@ hr {
     .phone-header a {
         font-weight: normal;
         border: 0;
+    }
+}
+
+@media print {
+    .phone-header {
+        display: none;
     }
 }
 
@@ -293,15 +304,10 @@ hr {
     clear: right;
     margin-right: -70%;
     width: 60%;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 100%;
+    font-size: 80%;
     font-family: var(--variable-font), sans-serif;
     vertical-align: baseline;
     position: relative; 
-}
-.margin-toggle {
-      color: var(--secondary-color);
 }
 .sidenote-number {
     counter-increment: sidenote-counter; 
@@ -311,16 +317,16 @@ hr {
     font-family: var(--fixed-font), monospace;
     position: relative;
     vertical-align: baseline; 
+    color: var(--main-color);
 }
 .sidenote-number:after {
-    content: counter(sidenote-counter) "\00bb";
-    font-size: 100%;
-    top: -0.2em;
+    content: counter(sidenote-counter);
+    font-size: 80%;
+    top: -0.5em;
 }
 .sidenote:before {
-    content: counter(sidenote-counter) "\00bb ";
-    font-size: 100%;
-    top: -0.2em; 
+    content: counter(sidenote-counter);
+    top: -0.5em; 
 }
 blockquote .sidenote,
 blockquote .marginnote {
@@ -335,7 +341,7 @@ label.sidenote-number {
     display: inline; 
 }
 label.margin-toggle:not(.sidenote-number) {
-    display: inline; 
+    display: none; 
 }
 input.margin-toggle {
     display: none; 
@@ -346,6 +352,7 @@ label.sidenote-number {
 @media screen and (max-width:48em) {
     label.margin-toggle:not(.sidenote-number) {
         display: inline; 
+        color: var(--main-color);
     }
     .sidenote,
     .marginnote {
@@ -365,12 +372,6 @@ label.sidenote-number {
     label {
         cursor: pointer; 
     }
-}
-@media print {
- .marginnote,
- .sidenote {
-  font-size:80%;
- }
 }
 
 .autocomplete {

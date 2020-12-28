@@ -39,7 +39,7 @@ This post is going to be a bit ambitious in that it's a literate org-mode file w
 </details>
 #+END_EXPORT
 
-The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-pygments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-pygments" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the [[https://github.com/mozmorris/tomorrow-pygments/blob/master/css/tomorrow.css][Tomorrow]] syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@.
+The main CSS file is called astrochelys.css and we'll be making it in parts below. Since CSS functions/styles can be defined in pretty much any order, we group there here by functionality. @@html:<label for="mn-pygments" class="margin-toggle">&raquo;</label><input type="checkbox" id="mn-pygments" class="margin-toggle"/><span class="marginnote">@@The CSS file for code block syntax highlighting is called ~pygments.css~ and basically just has the [[https://github.com/mozmorris/tomorrow-pygments/blob/master/css/tomorrow.css][Tomorrow]] syntax highlighting theme so we don't show it in the post, it's in the git repository though.@@html: </span>@@
 #+BEGIN_SRC css :tangle "static/css/pygments.css" :exports none
 .highlight .hll { background-color: #d6d6d6 }
 .highlight  { background: #ffffff; color: #4d4d4c }
@@ -110,7 +110,7 @@ The main CSS file is called astrochelys.css and we'll be making it in parts belo
 
 * Edits
 + 27 December 2020
-  Simplified colors and switched to Tomorrow theme. Added sidebar color, link backgrounds, code block borders.
+  Simplified colors and switched to Tomorrow theme. Added sidebar color, link backgrounds, code block borders. Made margin notes smaller.
 + 23 August 2020 
 *Important!* The following lines are needed in ~pelicanconf.py~ to ensure that tags and categories are headings within the tags page and categories page instead of each tag/category having its own dedicated page.
 #+BEGIN_SRC python
@@ -141,7 +141,7 @@ Since we have code blocks in almost every post, we'd like the colors to match th
   </details>
 #+END_EXPORT
 * Fonts
-We need one for code (fixed-font), one for long-form text (variable-font), and one for headings and things in capitals that needs to look good when they're big (condensed-font), and finally one for writing OutOFCheeseError. These were the ones we picked from [[https://fonts.google.com/][Google Fonts]].
+We need one for code (fixed-font), one for long-form text (variable-font), and one for headings and things in capitals that needs to look good when they're big (condensed-font), and finally one for writing OutOfCheeseError. These were the ones we picked from [[https://fonts.google.com/][Google Fonts]].
 #+BEGIN_SRC css  :tangle "static/css/astrochelys.css"
 :root {
   --fixed-font: "Fira Code Medium";
@@ -542,7 +542,7 @@ The layout is something all pages will have in common so we set it up in base.ht
 
 
 ** Header
-This is just an HTML snippet with the site name, description, navigation links, and an [[Search][optional search box]]. We'll use this below in the sidebar for desktops, and in the phone header for smaller screens.
+This is just an HTML snippet with the site name, description, navigation links, and an [[Search][optional search box]]. We'll use this below in the sidebar for desktops, and in the phone header for smaller screens. We're storing this in ~templates/snippets/header.html~.
 #+BEGIN_SRC html :tangle "templates/snippets/header.html"
   <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
   <div><small>{{ BIO_TEXT }}</small></div>
@@ -644,6 +644,11 @@ The associated CSS makes the sidebar use the condensed font so that longer title
              bottom: 0;
          }
   }
+  @media print {
+      .sidebar {
+             display: none;
+         }
+  }
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
@@ -687,6 +692,12 @@ The CSS turns off the phone header for larger screens, turns off the sidebar for
       .phone-header a {
           font-weight: normal;
           border: 0;
+      }
+  }
+  
+  @media print {
+      .phone-header {
+          display: none;
       }
   }
 #+END_SRC
@@ -1207,7 +1218,8 @@ The Categories and Archives pages are pretty much the same as the tags page exce
 #+END_EXPORT
 
 ** Margin notes
-Well, we have space free on the right; let's make some notes in the margin. This code is from [[https://edwardtufte.github.io/tufte-css/][tufte-css]] with minor modifications, sidenotes have a number attached and margin notes don't but both have a small arrow symbol pointing to the right. On phones you can click on the number / arrow and the note pops up. I kept the margin note label on normal screens too, just to have an indicator that there's something to read on the right.
+Well, we have space free on the right; let's make some notes in the margin. This code is from [[https://edwardtufte.github.io/tufte-css/][tufte-css]] with minor modifications, sidenotes have a number attached and margin notes don't. On phones, margin notes also have a small arrow symbol - you can click on the number / arrow and the note pops up. 
+
 #+BEGIN_EXPORT html
 <details>
 <summary>Margin CSS</summary>
@@ -1222,15 +1234,10 @@ Well, we have space free on the right; let's make some notes in the margin. This
       clear: right;
       margin-right: -70%;
       width: 60%;
-      margin-top: 0;
-      margin-bottom: 0;
-      font-size: 100%;
+      font-size: 80%;
       font-family: var(--variable-font), sans-serif;
       vertical-align: baseline;
       position: relative; 
-  }
-  .margin-toggle {
-        color: var(--secondary-color);
   }
   .sidenote-number {
       counter-increment: sidenote-counter; 
@@ -1240,16 +1247,16 @@ Well, we have space free on the right; let's make some notes in the margin. This
       font-family: var(--fixed-font), monospace;
       position: relative;
       vertical-align: baseline; 
+      color: var(--main-color);
   }
   .sidenote-number:after {
-      content: counter(sidenote-counter) "\00bb";
-      font-size: 100%;
-      top: -0.2em;
+      content: counter(sidenote-counter);
+      font-size: 80%;
+      top: -0.5em;
   }
   .sidenote:before {
-      content: counter(sidenote-counter) "\00bb ";
-      font-size: 100%;
-      top: -0.2em; 
+      content: counter(sidenote-counter);
+      top: -0.5em; 
   }
   blockquote .sidenote,
   blockquote .marginnote {
@@ -1264,7 +1271,7 @@ Well, we have space free on the right; let's make some notes in the margin. This
       display: inline; 
   }
   label.margin-toggle:not(.sidenote-number) {
-      display: inline; 
+      display: none; 
   }
   input.margin-toggle {
       display: none; 
@@ -1275,6 +1282,7 @@ Well, we have space free on the right; let's make some notes in the margin. This
   @media screen and (max-width:48em) {
       label.margin-toggle:not(.sidenote-number) {
           display: inline; 
+          color: var(--main-color);
       }
       .sidenote,
       .marginnote {
@@ -1295,12 +1303,6 @@ Well, we have space free on the right; let's make some notes in the margin. This
           cursor: pointer; 
       }
   }
-  @media print {
-   .marginnote,
-   .sidenote {
-    font-size:80%;
-   }
-  }
 #+END_SRC
 #+BEGIN_EXPORT html
 </details>
@@ -1309,7 +1311,7 @@ Well, we have space free on the right; let's make some notes in the margin. This
 To actually make a note in your article you need some raw HTML, easy enough to add into markdown, jupyter, and org@@html:<label for="sn-org" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-org" class="margin-toggle"/><span class="sidenote">@@I made some org-capture templates for adding these notes (over at [[https://out-of-cheese-error.netlify.com/spacemacs-config][this post with my .spacemacs]]) so it's as easy as writing normal content@@html: </span>@@ files:
 #+BEGIN_SRC html
 {#Margin Note#}
-<label for="mn-note" class="margin-toggle">&raquo;</label>
+<label for="mn-note" class="margin-toggle">&bull;</label>
 <input type="checkbox" id="mn-note" class="margin-toggle"/>
 <span class="marginnote">
 your note here
