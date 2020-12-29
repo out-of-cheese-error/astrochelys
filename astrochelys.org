@@ -169,7 +169,7 @@ Most of the page is going to be white with dark text and normal writing font. Th
 #+BEGIN_SRC css :tangle "static/css/astrochelys.css"
 body {
  color:var(--text-color);
- background-color:var(--bg-color);
+ background-color:var(--bg-color-main);
  font-family: var(--variable-font), serif;
  font-size: 1em;
  margin:0
