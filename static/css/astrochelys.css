@@ -1,9 +1,17 @@
 :root {
-  --main-color: #8959a8; /* the .k (keyword) color  */ 
-  --bg-color-main: #fff; /* overall background */
-  --secondary-color: #4d4d4c; /* the .n (name) color  */
-  --bg-color-secondary: #4d4d4c20; /* same as secondary-color but with lower opacity, background for certain elements */
-  --text-color: #1d1f21; /* nearly black */
+  /* the .k (keyword) color from the syntax highlighting theme. */ 
+  /* used for links, blockquote borders, sidenote numbers, margin note indicators (on phone) */
+  --main-color: #8959a8; 
+  /* overall background */
+  --bg-color-main: #fff; 
+  /* the .n (name) color from the syntax highlighting theme. */
+  /* used for sidebar links, link hover text and article information headlines. */
+  --secondary-color: #4d4d4c;
+  /* lighter version of secondary-color. */
+  /* used in code block borders and as a background for sidebar, links, inline code and blockquotes. */
+  --bg-color-secondary: #e8e8e8; 
+  /* nearly black */
+  --text-color: #1d1f21; 
 }
 
 :root {
