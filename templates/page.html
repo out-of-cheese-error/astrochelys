@@ -15,9 +15,11 @@
 {% endblock %}
 
 {% block content %}
-<header><h1>{{ page.title }}</h1></header>
-{{ page.content }}
-{% if page.modified %}
-<p>Last updated: {{ page.locale_modified }}</p>
-{% endif %}
+<section id="content" class="body">
+  <header><h1>{{ page.title }}</h1></header>
+  {{ page.content }}
+  {% if page.modified %}
+  <p>Last updated: {{ page.locale_modified }}</p>
+  {% endif %}
+</section>
 {% endblock %}
