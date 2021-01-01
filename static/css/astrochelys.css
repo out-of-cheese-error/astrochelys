@@ -310,8 +310,8 @@ hr {
 .marginnote {
     float: right;
     clear: right;
-    margin-right: -70%;
-    width: 60%;
+    margin-right: -65%;
+    width: 55%;
     font-size: 80%;
     font-family: var(--variable-font), sans-serif;
     vertical-align: baseline;
