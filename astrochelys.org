@@ -902,11 +902,6 @@ The Index page gives the titles, subtitles, and summaries of all our posts. We p
       </div>
       <div class="article-title">
         <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
-        <h4>
-          {%if article.subtitle %}
-          {{ article.subtitle }}
-          {% endif %}
-        </h4>
       </div>
       <div class="article-content"> {{ article.summary }} </div>
     </article>
