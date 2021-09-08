@@ -11,7 +11,7 @@
   /* used in code block borders and as a background for sidebar, links, inline code and blockquotes. */
   --bg-color-secondary: #e8e8e8; 
   /* nearly black */
-  --text-color: #1d1f21; 
+  --text-color: #111; 
 }
 
 :root {

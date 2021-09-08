@@ -142,7 +142,7 @@ Since we have code blocks in almost every post, we'd like the colors to match th
   /* used in code block borders and as a background for sidebar, links, inline code and blockquotes. */
   --bg-color-secondary: #e8e8e8; 
   /* nearly black */
-  --text-color: #1d1f21; 
+  --text-color: #111; 
 }
 #+END_SRC
 #+BEGIN_EXPORT html
@@ -550,7 +550,7 @@ The layout is something all pages will have in common so we set it up in base.ht
 
 
 ** Header
-This is just an HTML snippet with the site name, description, navigation links, and an [[Search][optional search box]]. We'll use this below in the sidebar for desktops, and in the phone header for smaller screens. We're storing this in ~templates/snippets/header.html~.
+This is just an HTML snippet with the site name, description, navigation links, We'll use this below in the sidebar for desktops, and in the phone header for smaller screens. We're storing this in ~templates/snippets/header.html~.
 #+BEGIN_SRC html :tangle "templates/snippets/header.html"
   <div class="sitename"><a href="/">{{ SITENAME }}</a></div>
   <div><small>{{ BIO_TEXT }}</small></div>
@@ -570,19 +570,19 @@ This is just an HTML snippet with the site name, description, navigation links, 
     </small>
   </div>
   <br>
-  {% if ADD_SEARCH_BOX %}
-    {% include "snippets/search.html" %}
-  {% endif %}
-#+END_SRC
+  #+END_SRC
 
 ** Sidebar
-We'll define the sidebar in ~base.html~ to have the header and a section for the table of contents (TOC). This is a jinja block that we can fill in later in the other templates.
+We'll define the sidebar in ~base.html~ to have the header, an [[Search][optional search box]] and a section for the table of contents (TOC). This is a jinja block that we can fill in later in the other templates.
 #+BEGIN_SRC html :tangle "templates/base.html"
   {#This means the sidebar is full-width on mobile (u) and a bit less than 1/4 on larger screens (md)#}
   <div class="sidebar pure-u-1 pure-u-md-5-24">
       <nav id="sidebar">
         <div class="sidebar-header">
           {% include "snippets/header.html" %}
+          {% if ADD_SEARCH_BOX %}
+              {% include "snippets/search.html" %}
+          {% endif %}
         </div>
         <div class="sidebar-content">
           <div class="toc">{% block toc %}{% endblock %}</div>
@@ -1534,7 +1534,7 @@ input:focus::placeholder {
 #+END_SRC
 
 Great! With all this set up, adding a search box to a page is as simple as adding ~{% include "snippets/search.html" %}~
-wherever we want it to be; you may have noticed it already in the [[Header][Header]].
+wherever we want it to be; you may have noticed it already in the [[Sidebar][Sidebar]].
 
 * Next steps
 We're pretty happy with this theme for now. If we get bored of the color scheme, we just need to pick a new (pygmentizable) syntax highlighting theme and change the colors accordingly. 

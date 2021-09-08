@@ -66,6 +66,10 @@
      </script>
      <!-- / Fathom -->
 {% endif %}
+{% if GOATCOUNTER_ANALYTICS %}
+  <script data-goatcounter="https://{{ GOATCOUNTER_ANALYTICS }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+{% endif %}
  </head>
 
 <body>
@@ -76,6 +80,9 @@
     <nav id="sidebar">
       <div class="sidebar-header">
         {% include "snippets/header.html" %}
+        {% if ADD_SEARCH_BOX %}
+            {% include "snippets/search.html" %}
+        {% endif %}
       </div>
       <div class="sidebar-content">
         <div class="toc">{% block toc %}{% endblock %}</div>
